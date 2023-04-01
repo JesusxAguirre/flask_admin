@@ -1,1 +1,1 @@
-from .auth import auth_scope
+from .auth import *
