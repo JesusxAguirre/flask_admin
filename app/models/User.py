@@ -27,6 +27,9 @@ class User(db.Model,UserMixin):
     def create(self,User : object):
         if self.user_exist(User):
             raise user_already_exist(User.email)
+        
+        db.session.add(User)
+        db.session.commit()
 
         return True
 
@@ -35,10 +38,12 @@ class User(db.Model,UserMixin):
 
     def delete(self):
         pass
+    
+    def get_all(self):  
 
-    def get_all(self):
-        pass
-     
+        return User.query.all()
+
+
     def get_by_id(self):
         pass
 
