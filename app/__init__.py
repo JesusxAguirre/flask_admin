@@ -1,39 +1,10 @@
-import os
-
 from flask import Flask
-from flask_security import Security, login_required, \
-     SQLAlchemySessionUserDatastore
-from database import db_session, init_db
-from models import User, Role
+from config import Config
 
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-    )
 
-    # Setup Flask-Security
-    user_datastore = SQLAlchemySessionUserDatastore(db_session,
-                                                User, Role)
-    security = Security(app, user_datastore)
+#from .routes import global_scope, api_scope, errors_scope
 
-    # Create a user to test with
-    @app.before_first_request
-    def create_user():
-        init_db()
-        user_datastore.create_user(email='matt@nobien.net', password='password')
-        db_session.commit()
+app = Flask(__name__, static_folder=Config.STATIC_FOLDER, template_folder=Config.TEMPLATE_FOLDER)
+app.config.from_object(Config)
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    
-
-    
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
-    return app
+#app.register_blueprint(global_scope, url_prefix="/")
