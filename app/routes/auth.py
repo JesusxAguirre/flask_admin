@@ -7,7 +7,8 @@ auth_scope = Blueprint("views/auth",__name__)
 
 @auth_scope.route("/", methods=["GET","POST"])
 def login():
+    if current_user.is_authenticated:
+        return "Este usuario ya esta registrado"
 
 
-
-    return render_template("views/auth/login.html")
+    return render_template("auth/login.html")

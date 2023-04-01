@@ -4,7 +4,7 @@ import os
 
 class Config:
 
-    SERVER_NAME = "localhost:5000"
+
     DEBUG = "True"
 
     #VARIABLES DE BASE DE DATOS

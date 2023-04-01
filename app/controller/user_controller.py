@@ -18,3 +18,7 @@ def create(user_: User)-> User:
 def get_all()->User:
 
     return User.get_all(User)
+
+def load_user(user_ : User):
+
+    return load_user(User)
