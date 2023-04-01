@@ -1,11 +1,11 @@
-from flask_login import UserMixin, LoginManager
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
-from __init__ import db
+from ..__init__ import db, login_manager
 from models.exceptions import user_already_exist
 
 
-login_manager = LoginManager()
+
     
 class User(db.Model,UserMixin):
 

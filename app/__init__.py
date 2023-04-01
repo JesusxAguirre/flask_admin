@@ -1,9 +1,10 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from .models.User import login_manager
+from flask_login import  LoginManager
 
 
+login_manager = LoginManager()
 
 db = SQLAlchemy()
 
