@@ -26,7 +26,7 @@ class User(db.Model,UserMixin):
 
     def create(self,User : object):
         if self.user_exist(User):
-            raise user_already_exist(User.email)
+            raise user_already_exist(f"El email: {User.email} ya existe en la bd")
         
         db.session.add(User)
         db.session.commit()
