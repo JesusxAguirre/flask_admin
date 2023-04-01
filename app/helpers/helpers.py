@@ -40,5 +40,9 @@ def security_validation_password(password : str)-> bool:
 
     return bool(re.search(regex_password,password))
 
+def sanitizar_caracteres(string):
+
+    return string.lower().strip()
+
 
 
