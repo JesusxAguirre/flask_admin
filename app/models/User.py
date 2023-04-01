@@ -1,6 +1,5 @@
 from flask_login import UserMixin, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
 from __init__ import db
 
 login_manager = LoginManager()
