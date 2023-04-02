@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
-from ..__init__ import db, login_manager
+from ..__init__ import db
 from models.exceptions import user_already_exist
 
 
@@ -44,7 +44,7 @@ class User(db.Model,UserMixin):
         return User.query.all()
 
 
-    def get_by_id(self):
+    def get_by_id(self,User):
         pass
 
     def user_exist(self,User: object):
@@ -52,6 +52,3 @@ class User(db.Model,UserMixin):
        return bool(db.execute(User.query.filter_by(email = User.email).first()))
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id) 

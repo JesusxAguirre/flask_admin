@@ -4,13 +4,13 @@ from ..helpers import helpers
 
 
 
-def create(user_: User)-> User:
-    User.email=helpers.sanitizar_caracteres(User.email)
-    User.email = helpers.sanitizar_caracteres(User.name)
+def create(user: User)-> User:
+    user.email=helpers.sanitizar_caracteres(user.email)
+    user.email = helpers.sanitizar_caracteres(user.name)
     
-    helpers.security_validation_email(User.email)
-    helpers.security_validation_password(User.password)
-    helpers.security_validation_strings(User.name)
+    helpers.security_validation_email(user.email)
+    helpers.security_validation_password(user.password)
+    helpers.security_validation_strings(user.name)
 
 
     return User.create(User)
@@ -19,6 +19,6 @@ def get_all()->User:
 
     return User.get_all(User)
 
-def load_user(user_ : User):
+def  get_by_id(user : User)->User:
 
-    return load_user(User)
+    return User.get_by_id(user.id)
