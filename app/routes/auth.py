@@ -20,6 +20,7 @@ def login():
         return "usuario auntenticado"
 
     user = User.query.filter_by(email="quijess6@gmail.com").first()
+    login_user(user)
 
     return render_template("login.html")
 
@@ -29,3 +30,10 @@ def login():
 def register():
 
     return "Sitio prohibido"
+
+@auth_scope.route("/logout")
+@login_required
+def logout():
+    logout_user()
+
+    return "Has cerrado sesion"

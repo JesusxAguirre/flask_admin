@@ -1,10 +1,8 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from .routes import auth_scope
-from flask_login import LoginManager
+from .routes import auth_scope, login_manager
 
-login_manager = LoginManager()
 
 db = SQLAlchemy()
 

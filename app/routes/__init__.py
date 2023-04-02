@@ -1,1 +1,1 @@
-from .auth import *
+from .auth import auth_scope,login_manager
