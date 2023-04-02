@@ -1,10 +1,8 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from .routes import auth_scope, login_manager
-
-
-db = SQLAlchemy()
+from .routes import login_manager, auth_scope
+from .models.User import db
 
 #from .routes import global_scope, api_scope, errors_scope
 
@@ -13,18 +11,19 @@ app.config.from_object(Config)
 
 
 
-#instaciando la base de datos
+#registrando el modulo de auth
+app.register_blueprint(auth_scope, url_prefix="/")
+
+#instanciando base de datos
 db.init_app(app)
-#instanciando la clase de login manager y sus atributos
+
+#instacioando login manager
 login_manager.init_app(app)
 
-#creando la tabla suponiendo que no exista
+#creando tablas
 @app.before_first_request
 def create_table():
     db.create_all()
 
 
-#registrando el modulo de auth
-app.register_blueprint(auth_scope, url_prefix="/")
 
-#app.register_blueprint(global_scope, url_prefix="/")

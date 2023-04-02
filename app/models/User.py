@@ -1,17 +1,18 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
-from ..__init__ import db
-from models.exceptions import user_already_exist
+from flask_sqlalchemy import SQLAlchemy
+from ..models.exceptions import UserAlreadyExist
 
 
+db = SQLAlchemy()
 
     
 class User(db.Model,UserMixin):
 
     __tablename__ = "users"
 
-    id = db.Column(db.integer(),primary_key=True)
+    id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(12))
     email = db.Column(db.String(256), unique=True, nullable=False)
     password = db.Column(db.String(256), nullable=False)
@@ -26,7 +27,7 @@ class User(db.Model,UserMixin):
 
     def create(self,User : object):
         if self.user_exist(User):
-            raise user_already_exist(f"El email: {User.email} ya existe en la bd")
+            raise UserAlreadyExist(f"El email: {User.email} ya existe en la bd")
         
         db.session.add(User)
         db.session.commit()

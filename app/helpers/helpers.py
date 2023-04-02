@@ -1,4 +1,4 @@
-from models import User
+from ..models.User import User
 import re
 
 regex_email = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'

@@ -9,7 +9,7 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id)) 
+    return User.User.query.get(int(user_id)) 
 
 
 
@@ -19,7 +19,7 @@ def login():
     if current_user.is_authenticated:
         return "usuario auntenticado"
 
-    user = User.query.filter_by(email="quijess6@gmail.com").first()
+    user = User.User.query.filter_by(email="quijess6@gmail.com").first()
     login_user(user)
 
     return render_template("login.html")
