@@ -1,13 +1,13 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
-from ..__init__ import db
+from ..__init__ import db, login_manager
 from models.exceptions import user_already_exist
 
 
 
     
-class User(db.Model):
+class User(db.Model,UserMixin):
 
     __tablename__ = "users"
 
@@ -51,7 +51,7 @@ class User(db.Model):
 
        return bool(db.execute(User.query.filter_by(email = User.email).first()))
 
-""" 
+
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id) """
+    return User.query.get(user_id) 

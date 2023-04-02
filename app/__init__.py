@@ -1,10 +1,10 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-
 from .routes import auth_scope
+from flask_login import LoginManager
 
-#login_manager = LoginManager()
+login_manager = LoginManager()
 
 db = SQLAlchemy()
 
@@ -13,10 +13,12 @@ db = SQLAlchemy()
 app = Flask(__name__, static_folder=Config.STATIC_FOLDER, template_folder=Config.TEMPLATE_FOLDER)
 app.config.from_object(Config)
 
+
+
 #instaciando la base de datos
 db.init_app(app)
 #instanciando la clase de login manager y sus atributos
-
+login_manager.init_app(app)
 
 #creando la tabla suponiendo que no exista
 @app.before_first_request
