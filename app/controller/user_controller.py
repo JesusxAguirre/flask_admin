@@ -8,12 +8,7 @@ def create(user: User):
     user.email=helpers.sanitizar_caracteres(user.email)
     user.email = helpers.sanitizar_caracteres(user.name)
     
-    helpers.security_validation_email(user.email)
-    helpers.security_validation_password(user.password)
-    helpers.security_validation_strings(user.name)
-
-    user = User(email=user.email,name=user.name, password=user.password)
-
+    user = helpers.validate_users(user)
     return user.create(user)
 
 def get_all():

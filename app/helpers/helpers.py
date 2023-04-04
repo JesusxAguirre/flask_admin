@@ -11,7 +11,7 @@ regex_strings= r"^[a-zA-Z]{3,12}$"
 regex_numeros= r"^[0-9]{3,12}$"
 
 
-def validate_users(user: User)->None:
+def validate_users(user: User)->User:
 
     if not security_validation_email(user.email):
 
@@ -22,6 +22,8 @@ def validate_users(user: User)->None:
     
     if not security_validation_password(user.password):
         raise InvalidadData(f"la clave :{user.password} es invalida")
+    
+    return User(email = user.email, name = user.name, password = user.password)
 
 
 def security_validation_email(email : str)-> bool:
