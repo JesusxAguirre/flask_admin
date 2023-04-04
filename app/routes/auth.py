@@ -13,7 +13,7 @@ def load_user(user_id):
 
 
 
-@auth_scope.get("/", methods=["GET","POST"])
+@auth_scope.get("/")
 def login_get():
 
     if current_user.is_authenticated:
