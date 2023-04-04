@@ -6,7 +6,7 @@ from ..helpers import helpers
 
 def create(user: User):
     user.email=helpers.sanitizar_caracteres(user.email)
-    user.email = helpers.sanitizar_caracteres(user.name)
+    user.name = helpers.sanitizar_caracteres(user.name)
     
     user = helpers.validate_users(user)
     return user.create(user)

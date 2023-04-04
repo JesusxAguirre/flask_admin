@@ -44,7 +44,7 @@ def register_post():
 
         print(request.form)
 
-        user =User(name=name,email=email)
+        user =User(email=email,name=name)
 
         user.set_password(password)
         

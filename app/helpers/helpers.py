@@ -16,7 +16,7 @@ def validate_users(user: User)->User:
     if not security_validation_email(user.email):
 
         raise InvalidadData(f"El email : {user.email} es invalido")
-
+        
     if not security_validation_strings(user.name):
         raise InvalidadData(f"el nombre : {user.name} es invalido")
     
