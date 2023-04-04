@@ -18,11 +18,11 @@ def __generate_error_response(error: Exception) -> Response:
 def handler_user_already_exist(error: UserAlreadyExist)-> Response:
     response = __generate_error_response(error)
     response["status_code"] = 409
-    return response
+    return response,409
 
 @errors_scope.app_errorhandler(InvalidadData)
 def handler_invalid_data(error : InvalidadData)-> Response:
     response = __generate_error_response(error)
     response['status_code']= 422
 
-    return response
+    return response,422
