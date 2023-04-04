@@ -14,15 +14,15 @@ def __generate_error_response(error: Exception) -> Response:
 
     return message
 
-@errors_scope.errorhandler(UserAlreadyExist)
+@errors_scope.app_errorhandler(UserAlreadyExist)
 def handler_user_already_exist(error: UserAlreadyExist)-> Response:
     response = __generate_error_response(error)
-    response.status_code = 409
+    response["status_code"] = 409
     return response
 
-@errors_scope.errorhandler(InvalidadData)
+@errors_scope.app_errorhandler(InvalidadData)
 def handler_invalid_data(error : InvalidadData)-> Response:
     response = __generate_error_response(error)
-    response.status_code = 422
+    response['status_code']= 422
 
     return response
