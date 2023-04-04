@@ -50,6 +50,6 @@ class User(db.Model,UserMixin):
 
     def user_exist(self,User: object):
 
-       return bool(db.execute(User.query.filter_by(email = User.email).first()))
+       return bool(User.query.filter_by(email = User.email).first())
 
 

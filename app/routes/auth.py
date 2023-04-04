@@ -42,13 +42,16 @@ def register_post():
         email = request.form['email']
         password = request.form['password']
 
+        print(request.form)
+
         user =User(name=name,email=email)
 
         user.set_password(password)
-            
+        
+        response = user_controller.create(user)
 
-    return "envio de formulario"
-
+        return response
+    
 
 
 @auth_scope.route("/logout")

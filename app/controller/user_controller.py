@@ -4,7 +4,7 @@ from ..helpers import helpers
 
 
 
-def create(user: User)-> User:
+def create(user: User):
     user.email=helpers.sanitizar_caracteres(user.email)
     user.email = helpers.sanitizar_caracteres(user.name)
     
@@ -12,10 +12,11 @@ def create(user: User)-> User:
     helpers.security_validation_password(user.password)
     helpers.security_validation_strings(user.name)
 
+    user = User(email=user.email,name=user.name, password=user.password)
 
-    return User.create(User)
+    return user.create(user)
 
-def get_all()->User:
+def get_all():
 
     return User.get_all(User)
 
