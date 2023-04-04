@@ -17,7 +17,7 @@
 <body class="h-100" style="background-color: #ddd;">
 
     <div class="container-fluid ">
-        <section class="h-100 gradient-form" >
+        <section class="h-100 gradient-form">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-xl-10">
@@ -25,6 +25,7 @@
                             <div class="row g-0">
                                 <div class="col-lg-12">
                                     <div class="card-body p-md-5 mx-md-4">
+                                        <h5>Registro en el sistema</h5>
                                         <form id="formulario" method="post" novalidate>
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                                             <div class="row mb-3">
@@ -53,17 +54,24 @@
                                                         <div class="relative">
                                                             <i class="input-icon fs-5"></i>
                                                             <label class="form-label text-capitalize for="">Nombre</label> 
-                                                            <input type=" text" class="form-control" name="nombre" id="nombre">
+                                                            <input type=" text" class="form-control" name="nombre"
+                                                                id="nombre">
                                                                 <p id="mensaje_email" class="text-danger d-none">el
                                                                     nombre debe tener minimo 3 letras y maximo 12</p>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-12">
+                                                   <a href="{{url_for('auth.login_get')}}"><button class="btn btn-danger" type="button">Regresar</button></a>
+                                                    <button class="btn btn-primary" type="submit">Registrarse</button>
+                                                  </div>
                                             </div>
+                                          
+                                        </form>
                                     </div>
 
 
-                                    </form>
+
 
 
                                 </div>
