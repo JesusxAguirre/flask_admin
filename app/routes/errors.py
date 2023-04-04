@@ -17,5 +17,5 @@ def __generate_error_response(error: Exception) -> Response:
 @errors_scope.errorhandler(UserAlreadyExist)
 def handler_user_already_exist(error: UserAlreadyExist)-> Response:
     response = __generate_error_response(error)
-    response.status_code = 404
+    response.status_code = 409
     return response

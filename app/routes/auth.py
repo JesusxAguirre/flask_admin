@@ -13,21 +13,21 @@ def load_user(user_id):
 
 
 
-@auth_scope.route("/", methods=["GET","POST"])
-def login():
+@auth_scope.get("/", methods=["GET","POST"])
+def login_get():
 
     if current_user.is_authenticated:
         return "usuario auntenticado"
 
-    
-    #user = User.query.filter_by(email="quijess6@gmail.com").first()
-    #login_user(user)
-
     return render_template("auth/login.html")
+
+@auth_scope.post("/")
+def login_post():
+
+    return "aun no se crea el registro"
 
 
 @auth_scope.route("/register")
-@login_required
 def register():
 
     return "Sitio prohibido"
