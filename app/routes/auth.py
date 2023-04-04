@@ -27,10 +27,18 @@ def login_post():
     return "aun no se crea el registro"
 
 
-@auth_scope.route("/register")
-def register():
+@auth_scope.get("/register")
+def register_get():
 
-    return "Sitio prohibido"
+    return render_template("auth/register.html")
+
+@auth_scope.post("/register")
+def register_post():
+
+
+    return "envio de formulario"
+
+
 
 @auth_scope.route("/logout")
 @login_required
