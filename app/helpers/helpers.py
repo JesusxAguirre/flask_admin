@@ -1,4 +1,5 @@
 from ..models.User import User
+from ..models.exceptions import InvalidadData
 import re
 
 regex_email = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
@@ -14,13 +15,13 @@ def validate_users(user: User)->None:
 
     if not security_validation_email(user.email):
 
-        raise "Email invalido"
+        raise InvalidadData(f"El email : {user.email} es invalido")
 
     if not security_validation_strings(user.name):
-        raise "Nombre invalido"
+        raise InvalidadData(f"el nombre : {user.name} es invalido")
     
     if not security_validation_password(user.password):
-        raise "Clave invalida"
+        raise InvalidadData(f"la clave :{user.password} es invalida")
 
 
 def security_validation_email(email : str)-> bool:

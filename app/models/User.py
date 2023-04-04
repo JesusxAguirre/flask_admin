@@ -32,7 +32,7 @@ class User(db.Model,UserMixin):
         db.session.add(User)
         db.session.commit()
 
-        return True
+        return {"msj":"Usuario registrado exitosamente","status_code":200}
 
     def update(self):
         pass

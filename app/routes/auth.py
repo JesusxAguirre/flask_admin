@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import current_user, login_user, logout_user, login_required,LoginManager
 from ..models.User import User
+from ..controller import user_controller
 
 
 
@@ -35,6 +36,16 @@ def register_get():
 @auth_scope.post("/register")
 def register_post():
 
+    if request.method == "POST":
+
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        user =User(name=name,email=email)
+
+        user.set_password(password)
+            
 
     return "envio de formulario"
 
