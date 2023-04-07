@@ -68,7 +68,8 @@ $('#formulario').submit(function (event) {
         Swal.fire({
             icon: 'error',
             title: 'Lo siento ',
-            text: 'Registra el formulario correctamente '
+            text: 'Registra el formulario correctamente ',
+            position: 'center'
         })
     } else {
         $.ajax({
