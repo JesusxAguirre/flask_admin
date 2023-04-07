@@ -50,13 +50,6 @@ def register_post():
         
         response = user_controller.create(user)
 
-        return response
+        return response,200
     
 
-
-@auth_scope.route("/logout")
-@login_required
-def logout():
-    logout_user()
-
-    return "Has cerrado sesion"
