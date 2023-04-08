@@ -23,7 +23,11 @@ def validate_users(user: User)->User:
     if not security_validation_password(user.password):
         raise InvalidadData(f"la clave :{user.password} es invalida")
     
-    return User(email = user.email, name = user.name, password = user.password)
+    _user = User(email = user.email, name = user.name)
+
+    _user.set_password(user.password)
+
+    return _user
 
 
 def security_validation_email(email : str)-> bool:

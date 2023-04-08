@@ -103,7 +103,10 @@ $('#formulario').submit(function (event) {
             url: '/register',
             data: $(this).serialize(),// Obtiene los datos del formulario
             success: function (response) {
-
+                document.getElementById("formulario").reset()
+                for (let key in campos) {
+                    campos[key] = false;
+                  }
                 Swal.fire({
                     icon: 'success',
                     title: 'Te has registrado correctamente en el sistema'
