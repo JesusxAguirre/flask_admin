@@ -32,13 +32,11 @@ def login_post():
 
         print(request.form)
 
-        user = User(email = email, password = password)
+        user = User(email=email, password=password)
 
-        response =user_controller.login(user)
+        response = user_controller.login(user)
 
-
-        return response,200
-
+        return response, 200
 
 
 @auth_scope.get("/register")
@@ -57,8 +55,6 @@ def register_post():
         email = request.form['email']
         password = request.form['password']
 
-        
-
         user = User(name=name,
                     apellido=apellido,
                     email=email,
@@ -67,11 +63,14 @@ def register_post():
         response = user_controller.create(user)
 
         return response, 200
-    
-    #validar que el email no exista en la BD
+
+    # validar que el email no exista en la BD
     if request.form['email_exist']:
 
         email = request.form['email_exist']
 
-        
-        return response
+        user = User(email=email)
+
+        response = user_controller.user_already_exist_create(user)
+
+        return response, 200
