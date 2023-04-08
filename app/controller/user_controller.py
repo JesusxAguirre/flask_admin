@@ -33,3 +33,12 @@ def login(user : User)-> User:
     
 
     return  {"msj": "has iniciado sesion correctamente", "status_Code": 200}
+
+
+def user_already_exist_create(user: User) -> None:
+
+    helpers.validate_user_already_exist_create(user.user_exist(user))
+
+
+    return {"msj": "el email no existe en la bd", "status_code":200}
+    

@@ -3,3 +3,6 @@ class UserAlreadyExist(Exception):
 
 class InvalidadData(Exception):
     pass
+
+class UserNotExist(Exception):
+    pass

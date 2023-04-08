@@ -50,7 +50,7 @@ def register_get():
 @auth_scope.post("/register")
 def register_post():
 
-    if request.method == "POST":
+    if request.form['name']:
 
         name = request.form['name']
         apellido = request.form['apellido']
@@ -67,3 +67,11 @@ def register_post():
         response = user_controller.create(user)
 
         return response, 200
+    
+    #validar que el email no exista en la BD
+    if request.form['email_exist']:
+
+        email = request.form['email_exist']
+
+        
+        return response
