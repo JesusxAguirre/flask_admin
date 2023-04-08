@@ -8,13 +8,13 @@ const campos = {
     apellido: false,
     email: false,
     password: false,
-    retype_password: false,
+    password2: false,
 }
 
 const expresiones = { //objeto con varias expresiones regulares
 
     caracteres: /^[A-ZÑa-zñáéíóúÁÉÍÓÚ'°]{3,12}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/, // 6 a 16 digitos.
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/, // 6 a 12 digitos.
     email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
 
 }
@@ -50,7 +50,7 @@ const validar_formulario = (e) => {
 
 const validar_campo = (expresion, input, campo) => {
     if (expresion.test(input.value)) {
-       
+
         document.querySelector(`#grupo__${campo} p`).classList.remove('d-block');
         document.querySelector(`#grupo__${campo} input`).classList.remove('is-invalid')
 
@@ -58,18 +58,18 @@ const validar_campo = (expresion, input, campo) => {
         campos[campo] = true;
     } else {
 
-        
+
         document.querySelector(`#grupo__${campo} p`).classList.remove('d-none');
-      
+
         document.querySelector(`#grupo__${campo} p`).classList.add('d-block');
         document.querySelector(`#grupo__${campo} input`).classList.add('is-invalid')
         campos[campo] = false;
     }
 }
 
-const validar_equals_password = (expresion,input,campo)=> {
-    if (expresion.test(input.value) && input.value == document.getElementById('password').value ) {
-       
+const validar_equals_password = (expresion, input, campo) => {
+    if (expresion.test(input.value) && input.value == document.getElementById('password').value) {
+
         document.querySelector(`#grupo__${campo} p`).classList.remove('d-block');
         document.querySelector(`#grupo__${campo} input`).classList.remove('is-invalid')
 
@@ -77,9 +77,9 @@ const validar_equals_password = (expresion,input,campo)=> {
         campos[campo] = true;
     } else {
 
-        
+
         document.querySelector(`#grupo__${campo} p`).classList.remove('d-none');
-      
+
         document.querySelector(`#grupo__${campo} p`).classList.add('d-block');
         document.querySelector(`#grupo__${campo} input`).classList.add('is-invalid')
         campos[campo] = false;
@@ -90,7 +90,7 @@ const validar_equals_password = (expresion,input,campo)=> {
 
 $('#formulario').submit(function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
-    if (!(campos.name && campos.apellido && campos.email && campos.password && campos.retype_password)) {
+    if (!(campos.name && campos.apellido && campos.email && campos.password && campos.password2)) {
         Swal.fire({
             icon: 'error',
             title: 'Lo siento ',
@@ -103,8 +103,11 @@ $('#formulario').submit(function (event) {
             url: '/register',
             data: $(this).serialize(),// Obtiene los datos del formulario
             success: function (response) {
-                console.log("entro en el success")
-                // Código a ejecutar si la solicitud se realizó correctamente
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Te has registrado correctamente en el sistema'
+                })
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud

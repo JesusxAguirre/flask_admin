@@ -44,9 +44,9 @@ def register_post():
 
         print(request.form)
 
-        user =User(email=email,name=name)
+        user =User(email=email,name=name, password=password)
 
-        user.set_password(password)
+        
         
         response = user_controller.create(user)
 
