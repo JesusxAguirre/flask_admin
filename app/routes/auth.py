@@ -25,7 +25,20 @@ def login_get():
 @auth_scope.post("/")
 def login_post():
 
-    return "aun no se crea el registro"
+    if request.method == "POST":
+
+        email = request.form['email']
+        password = request.form['password']
+
+        print(request.form)
+
+        user = User(email = email, password = password)
+
+        response =user_controller.login(user)
+
+
+        return response,200
+
 
 
 @auth_scope.get("/register")
@@ -44,7 +57,7 @@ def register_post():
         email = request.form['email']
         password = request.form['password']
 
-        print(request.form)
+        
 
         user = User(name=name,
                     apellido=apellido,
