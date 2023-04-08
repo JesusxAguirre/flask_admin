@@ -11,6 +11,7 @@ regex_strings= r"^[a-zA-Z]{3,12}$"
 regex_numeros= r"^[0-9]{3,12}$"
 
 
+#VALIDACION DEL OBJETO USUARIO - CREATE
 def validate_users(user: User)->User:
 
     if not security_validation_email(user.email):
@@ -33,6 +34,15 @@ def validate_users(user: User)->User:
     return _user
 
 
+def validate_login(user : User, password : str) -> None:
+
+     if user is None or user.check_password(password) is False:
+         raise InvalidadData(f"algo esta equivocado en la clave o el usuario")
+     
+    
+
+
+#VALIDACIONES REUTILIZABLES
 def security_validation_email(email : str)-> bool:
 
     return bool(re.search(regex_email,email))

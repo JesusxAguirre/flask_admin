@@ -49,8 +49,13 @@ class User(db.Model,UserMixin):
     def get_by_id(self,User):
         pass
 
-    def user_exist(self,User: object):
+    
+    def get_by_email(self,user):
 
-       return bool(User.query.filter_by(email = User.email).first())
+        return User.query.filter_by(email = user.email).first()
+    
+    def user_exist(self,_user: object) -> bool:
+
+       return bool(User.query.filter_by(email = _user.email).first())
 
 
