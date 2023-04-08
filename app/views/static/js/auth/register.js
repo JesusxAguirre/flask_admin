@@ -121,7 +121,7 @@ $('#formulario').submit(function (event) {
                 })
 
 
-                console.log(xhr.responseJSON)
+                
             }
         });
     }
