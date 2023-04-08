@@ -57,10 +57,6 @@ const validar_campo = (expresion, input, campo) => {
         document.querySelector(`#grupo__${campo} p`).classList.add('d-none');
         campos[campo] = true;
 
-        if (campos.email == true){
-            user_exist(document.getElementById('email').value())
-        }
-
     } else {
 
 
@@ -119,6 +115,8 @@ $('#formulario').submit(function (event) {
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud
+
+                console.log(xhr)
                 Swal.fire({
                     icon: 'error',
                     title: 'Lo siento ',
@@ -146,30 +144,5 @@ inputs.forEach((input) => {
 
 
 
-//FUNCIONES DE AJAX QUE VERIFICAN QUE EL EMAIL NO EXISTA EN LA BASE DE DATOS
 
-function user_exist(email) {
-    $.ajax({
-        type: 'POST',
-        url: '/register',
-        data: 'email_exist=' + email,
-        success: function (response) {
-            
-        },
-        error: function (xhr, status, error) {
-            // Código a ejecutar si se produjo un error al realizar la solicitud
-        document.querySelector(`#grupo__email p`).classList.remove('d-none');
-
-        document.querySelector(`#grupo__email p`).classList.add('d-block');
-        document.querySelector(`#grupo__email input`).classList.add('is-invalid')
-        
-        document.getElementById('mensaje_email').textContent = "este email ya existe en la base de datos"
-
-        campos.email = false;
-
-
-                 
-        }
-    });
-}
 

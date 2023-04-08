@@ -30,7 +30,7 @@
                 <p class="login-box-msg">Registrate en el sistema</p>
 
                 <form id="formulario" method="post" novalidate>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div id="grupo__name">
                         <div class="input-group mb-3" id="grupo__name">
 

@@ -42,13 +42,14 @@ def validate_login(user : User, password : str) -> None:
     
 
 def validate_user_already_exist_create(boleana : bool) -> None:
-    
+    print("ENTRA EN LA FUNCION USER ALREADY EXIST CREATE")
     if boleana:
+        print("ENTRA EN EL IF FUNCION USER ALREADY EXIST CREATE")
         raise UserAlreadyExist(f"El email  ya existe en la bd")
 
 
 def validate_user_already_exist_login(boleana : bool)->None:
-
+   
     if boleana is False:
         raise  UserNotExist(f"El email no existe en la bd")
     
