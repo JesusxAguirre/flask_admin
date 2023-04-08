@@ -6,8 +6,6 @@ from ..helpers import helpers
 
 def create(user: User):
     user.email=helpers.sanitizar_caracteres(user.email)
-    helpers.validate_user_already_exist_create(user.user_exist(user))
-
     user.name = helpers.sanitizar_caracteres(user.name)
     user.apellido = helpers.sanitizar_caracteres(user.apellido)
 

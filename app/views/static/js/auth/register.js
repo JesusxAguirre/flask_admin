@@ -107,7 +107,7 @@ $('#formulario').submit(function (event) {
                 document.getElementById("formulario").reset()
                 for (let key in campos) {
                     campos[key] = false;
-                  }
+                }
                 Swal.fire({
                     icon: 'success',
                     title: 'Te has registrado correctamente en el sistema'
@@ -116,15 +116,23 @@ $('#formulario').submit(function (event) {
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud
 
-                console.log(xhr)
+                if (xhr.responseJSON.ErrorType == "UserAlreadyExist") {
+                    document.querySelector(`#grupo__email p`).classList.remove('d-none');
+
+                    document.querySelector(`#grupo__email p`).classList.add('d-block');
+                    document.querySelector(`#grupo__email input`).classList.add('is-invalid')
+                    campos.email = false;
+
+                    document.getElementById('mensaje_email').textContent = xhr.responseJSON.Message
+                }
                 Swal.fire({
                     icon: 'error',
-                    title: 'Lo siento ',
-                    text: 'Registra el formulario correctamente '
+                    title: xhr.responseJSON.ErrorType,
+                    text: xhr.responseJSON.Message
                 })
 
 
-                
+
             }
         });
     }
