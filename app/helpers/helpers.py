@@ -20,10 +20,13 @@ def validate_users(user: User)->User:
     if not security_validation_strings(user.name):
         raise InvalidadData(f"el nombre : {user.name} es invalido")
     
+    if not security_validation_strings(user.apellido):
+        raise InvalidadData(f"el apellido : {user.apellido} es invalido")
+    
     if not security_validation_password(user.password):
         raise InvalidadData(f"la clave :{user.password} es invalida")
     
-    _user = User(email = user.email, name = user.name)
+    _user = User(email = user.email, name = user.name, apellido = user.apellido)
 
     _user.set_password(user.password)
 
