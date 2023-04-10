@@ -31,8 +31,8 @@ def login(user : User):
 
     helpers.validate_login(_user,user.password)
     
-
-    return  {"msj": "has iniciado sesion correctamente", "status_Code": 200}
+    print(_user)
+    return  _user
 
 
 
