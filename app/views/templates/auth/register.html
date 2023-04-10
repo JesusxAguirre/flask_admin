@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title %} {% endblock %}</title>
+    <title>Registrarse</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <!-- Google Font: Source Sans Pro -->
@@ -15,24 +15,24 @@
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{url_for('static', filename='adminlte/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.css')}}">
 
 
 </head>
 
 <body class="hold-transition register-page">
-    <div style="width: 34rem;" class="register-box">
+    <div  class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center bg-warning">
                 <a href="#" class="h1"><b>Market </b>empresa</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Registrate en el sistema</p>
+                <p class="login-box-msg font-weight-bold">Registrate en el sistema</p>
 
                 <form id="formulario" method="post" novalidate>
                     <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div id="grupo__name">
-                        <div class="input-group mb-3" id="grupo__name">
+                        <div class="input-group mb-3">
 
 
 
