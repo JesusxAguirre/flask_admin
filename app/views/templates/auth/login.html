@@ -30,7 +30,7 @@
             <div class="card-body">
                 <p class="login-box-msg text-capitalize font-weight-bold">Iniciar sesion</p>
 
-                <form  method="post" novalidate>
+                <form id="formulario"  method="post" novalidate>
                     <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div id="grupo__email">
                         <div class="input-group mb-3">
@@ -54,9 +54,9 @@
                         </div>
                         <p class="text-danger d-none"> Algo esta equivocado en la clave o el usuario</p>
                     </div>
-                    <div class="row">
+                    <div class="row  mt-3 mb-3">
 
-                        <div class="col-5">
+                        <div class="col-5 ">
                             <button type="submit" class="btn btn-primary btn-block">Iniciar sesion</button>
                         </div>
                         <!-- /.col -->
