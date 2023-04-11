@@ -18,7 +18,7 @@ def login_get():
 
     if current_user.is_authenticated:
         
-        return "usuario auntenticado"
+        return redirect(url_for('security.dashboard_get'))
     
    
     return render_template("auth/login.html")
@@ -32,10 +32,15 @@ def login_post():
 
         email = request.form['email']
         password = request.form['password']
-        remember = request.form['remember_me']
+        
+         # Verificar si la casilla de verificación "Recuérdame" está seleccionada
+        if 'remember_me' in request.form:
+            remember = True
+        else:
+            remember = False
 
 
-
+        
         user = User(email = email, password = password)
 
         _user =user_controller.login(user)

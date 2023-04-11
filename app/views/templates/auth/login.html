@@ -57,7 +57,7 @@
                     <div class="row  ">
                         <div class="col-8">
                             <div class="icheck-primary">
-                              <input name="remember_me" type="checkbox" id="remember">
+                              <input  name="remember_me" type="checkbox" id="remember">
                               <label for="remember">
                                 Recuerdame
                               </label>
@@ -84,7 +84,7 @@
     </div>
     <!-- /.login-box -->
 
-    <input hidden id="url_login" value="url_for('auth.login_get')"">
+    <input hidden id="url_login" value="{{ url_for('auth.login_get') }}" />
 
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
