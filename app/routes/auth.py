@@ -19,8 +19,8 @@ def login_get():
     if current_user.is_authenticated:
         
         return "usuario auntenticado"
-        
-
+    
+   
     return render_template("auth/login.html")
 
 
@@ -43,7 +43,7 @@ def login_post():
         login_user(_user,remember)
        
 
-        return {"msj": "has iniciado sesion correctamente", "status_Code": 200},200
+        return {"msj": "has iniciado sesion correctamente", "status_Code": 200 ,"url": url_for("security.dashboard_get")},200
 
 
 auth_scope.get("/logout")
