@@ -47,6 +47,7 @@ def login_post():
 
 
 auth_scope.get("/logout")
+@login_required
 def logout():
     logout_user()
 
