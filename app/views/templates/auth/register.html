@@ -128,7 +128,8 @@
         </div><!-- /.card -->
     </div>
     <!-- /.register-box -->
-
+    
+    <input hidden id="url_register" value="{{ url_for('auth.register_get') }}" />
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->

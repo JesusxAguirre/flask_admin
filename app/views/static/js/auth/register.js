@@ -1,6 +1,8 @@
 
 //declarando constante que guarda en un array todos los inputs dentro del id formulario
 const inputs = document.querySelectorAll("#formulario input")
+// Obtener el elemento de entrada oculto
+
 
 
 const campos = {
@@ -99,9 +101,10 @@ $('#formulario').submit(function (event) {
             position: 'center'
         })
     } else {
+        let url=document.getElementById("url_register").value
         $.ajax({
             type: 'POST',
-            url: '/register',
+            url: url,
             data: $(this).serialize(),// Obtiene los datos del formulario
             success: function (response) {
                 document.getElementById("formulario").reset()
