@@ -60,9 +60,10 @@ $('#formulario').submit(function (event) {
             position: 'center'
         })
     } else {
+        let url = document.getElementById('url_login').value
         $.ajax({
             type: 'POST',
-            url: '/',
+            url: url,
             data: $(this).serialize(),// Obtiene los datos del formulario
             success: function (response) {
                 document.getElementById("formulario").reset()
