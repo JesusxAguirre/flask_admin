@@ -74,6 +74,8 @@ $('#formulario').submit(function (event) {
                     icon: 'success',
                     title: 'Has iniciado seccion correctamente'
                 })
+
+                setTimeout(location.href = document.getElementById('url_dashboard').value, 3000)
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud

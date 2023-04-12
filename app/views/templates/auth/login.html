@@ -85,7 +85,7 @@
     <!-- /.login-box -->
 
     <input hidden id="url_login" value="{{ url_for('auth.login_get') }}" />
-
+    <input hidden id="url_dashboard" value="{{url_for('security.dashboard_get')}}">
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->

@@ -51,21 +51,16 @@ def login_post():
         return {"msj": "has iniciado sesion correctamente", "status_Code": 200 ,"url": url_for("security.dashboard_get")},200
 
 
-auth_scope.get("/logout")
-@login_required
-def logout():
-    logout_user()
-
-    return redirect(url_for("auth.login_get"))
 
 
+#REGISTRO DE USUARIO REDERIZAR PAGINA
 @auth_scope.get("/register")
 def register_get():
    
    
     return render_template("auth/register.html")
 
-
+#REGISTRO DE USUARIO ENVIO DE FORMULARIO
 @auth_scope.post("/register")
 def register_post():
 
@@ -87,4 +82,11 @@ def register_post():
 
         return response, 200
     
-    
+
+#CERRAR SESION    
+@auth_scope.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    logout_user()
+
+    return redirect(url_for("auth.login_get"))
