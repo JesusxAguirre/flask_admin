@@ -7,7 +7,7 @@ from flask_login import current_user, login_required
 security_scope = Blueprint("security", __name__)
 
 
-@security_scope.get("/")
+@security_scope.route("/", methods=["GET"])
 @login_required
 def dashboard_get():
 

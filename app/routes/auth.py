@@ -13,7 +13,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-@auth_scope.get("/")
+@auth_scope.route("/", methods=["GET"])
 def login_get():
 
     if current_user.is_authenticated:
@@ -24,7 +24,7 @@ def login_get():
     return render_template("auth/login.html")
 
 
-@auth_scope.post("/")
+@auth_scope.route("/", methods =["POST"])
 def login_post():
 
     if request.method == "POST":
@@ -54,14 +54,14 @@ def login_post():
 
 
 #REGISTRO DE USUARIO REDERIZAR PAGINA
-@auth_scope.get("/register")
+@auth_scope.route("/register", methods=["GET"])
 def register_get():
    
    
     return render_template("auth/register.html")
 
 #REGISTRO DE USUARIO ENVIO DE FORMULARIO
-@auth_scope.post("/register")
+@auth_scope.route("/register", methods=["POST"])
 def register_post():
 
     if request.method == "POST":
