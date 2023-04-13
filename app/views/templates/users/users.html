@@ -63,11 +63,10 @@
 
 
 {% block links_js %}
-<script src="{{url_for('static', filename='adminlte/dataTables/css/dataTables.bootstrap.js')}}" ></script>
+<!-- <script src="{{url_for('static', filename='adminlte/dataTables/js/dataTables.bootstrap.js')}}" ></script> -->
 
 <script>
-    url = document.getElementById('url_data').value
-    console.log(url)
+    
     $(document).ready(function() {
         $.ajax({
             url: document.getElementById('url_data').value,
@@ -75,6 +74,9 @@
             dataType: 'json',
             success: function(data) {
                 console.log(data)
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr)
             }
         });
     });
