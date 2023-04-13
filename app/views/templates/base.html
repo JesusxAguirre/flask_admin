@@ -285,7 +285,7 @@
                         
                         <li class="nav-header">SEGURIDAD</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" >
+                            <a href="{{url_for('users.users_get')}}" class="nav-link" >
                                 <i class="nav-icon fas fa-lock"></i>
                                 <p>Usuarios</p>
                                 
@@ -402,10 +402,6 @@
 
         
 
-
-        <!-- overlayScrollbars -->
-        <script
-            src="{{url_for('static', filename='adminlte/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
         <!-- jQuery -->
         <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
         <!-- Bootstrap 4 -->
@@ -415,6 +411,10 @@
         <script src="{{url_for('static', filename='adminlte/dist/js/adminlte.min.js')}}"></script>
         <!-- SWEET ALERT -->
         <script src="{{url_for('static', filename='js/sweetalert2.js')}}"></script>
+
+        {% block links_js %}
+
+        {% endblock %}
 </body>
 
 </html>

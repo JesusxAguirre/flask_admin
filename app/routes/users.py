@@ -1,14 +1,25 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
-
+from ..models.User import User
+from ..controller import user_controller
 
 
 
 users_scope = Blueprint("users", __name__)
 
 
-@users_scope.get("/")
+@users_scope.route("/", methods=["GET"])
 @login_required
 def users_get():
 
     return render_template("users/users.html")
+
+@users_scope.route("/", methods=["GET"])
+@login_required
+def users_list():
+
+    users = user_controller.get_all()
+   
+    
+
+    return jsonify([{'id': user.id, 'name': user.name, 'email': user.email} for user in users]),200

@@ -14,7 +14,7 @@ def create(user: User):
 
 def get_all():
 
-    return User.get_all(User)
+    return User.get_all()
 
 def  get_by_id(user : User)->User:
 

@@ -41,7 +41,7 @@ class User(db.Model,UserMixin):
     def delete(self):
         pass
     
-    def get_all(self):  
+    def get_all():  
 
         return User.query.all()
 

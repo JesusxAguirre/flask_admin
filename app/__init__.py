@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from .routes import login_manager, auth_scope, errors_scope,security_scope
+from .routes import login_manager, auth_scope, errors_scope,security_scope, users_scope
 from .models.User import db
 from flask_wtf.csrf import CSRFProtect
 
@@ -16,6 +16,7 @@ csrf = CSRFProtect(app)
 app.register_blueprint(auth_scope, url_prefix="/")
 app.register_blueprint(errors_scope, url_prefix="/")
 app.register_blueprint(security_scope, url_prefix="/admin")
+app.register_blueprint(users_scope, url_prefix="/users")
 
 #instanciando base de datos
 db.init_app(app)
