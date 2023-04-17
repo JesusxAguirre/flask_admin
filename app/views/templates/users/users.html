@@ -3,9 +3,9 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block head %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
+
 <link
-    href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sl-1.6.2/datatables.min.css"
+    href="{{url_for('static', filename='adminlte/DataTables/datatables.css')}}"
     rel="stylesheet" />
 
 
@@ -60,6 +60,10 @@
                                                         Nombre</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Apellido</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
                                                         Email   </th>
 
@@ -98,12 +102,8 @@
 
 
 {% block links_js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script
-    src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sl-1.6.2/datatables.min.js"></script>
 
+<script src="{{url_for('static', filename='adminlte/DataTables/datatables.min.js')}}" ></script>
 
 <script>
 
@@ -120,6 +120,7 @@
                     columns: [
                         { data: 'id' },
                         { data: 'name' },
+                        { data: 'apellido'},
                         { data: 'email' },
                     ],
                     "responsive": true, "lengthChange": false, "autoWidth": false,

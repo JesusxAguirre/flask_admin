@@ -24,6 +24,6 @@ def users_list():
 
     users = user_controller.get_all()
    
-    users = [{'id': user.id, 'name': user.name, 'email': user.email} for user in users]
+    users = [{'id': user.id, 'name': user.name, 'apellido':user.apellido, 'email': user.email} for user in users]
 
     return users,200
