@@ -18,7 +18,9 @@ def get_all():
 
 def  get_by_id(user : User)->User:
 
-    return User.get_by_id(user.id)
+    
+
+    return user.get_by_id(user)
 
 
 

@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
 from flask_sqlalchemy import SQLAlchemy
-from ..models.exceptions import UserAlreadyExist
+from ..models.exceptions import UserAlreadyExist,UserNotExist
 
 
 db = SQLAlchemy()
@@ -47,11 +47,30 @@ class User(db.Model,UserMixin):
         return User.query.all()
 
 
-    def get_by_id(self,user):
-        return User.query.filter_by(id = user.id).first()
+    def get_by_id(self,user : object) -> object:
+        """ retorna un objeto con datos del usuario
+
+        Args:
+            user (object): un objeto de tipo usuario con los datos 
+            del usuario en este caso solo el id
+
+        Raises:
+            UserNotExist: excepcion si el usuario con el id pasado no existe
+
+        Returns:
+            object: retorna un objeto de tipo usuario ya que solo en las capas intenras solo se manejan objetos
+        """
+
+
+        user_ =  User.query.filter_by(id = user.id).first()
+
+        if user_ is None:
+            raise UserNotExist(f"El usuario con id : {user.id} no existe")
+
+        return user_
 
     
-    def get_by_email(self,user):
+    def get_by_email(self,user ):
 
         return User.query.filter_by(email = user.email).first()
     

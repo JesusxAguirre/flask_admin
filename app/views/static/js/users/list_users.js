@@ -20,7 +20,7 @@ $(document).ready(function () {
                         defaultContent: '<a class="btn btn-primary btn-sm btn-view" href="#"><i class="fas fa-folder"/>Ver </i></a> <a class="btn btn-info btn-sm btn-edit" href="#"><i class="fas fa-pencil-alt"></i> Editar</a> <a class="btn btn-danger btn-sm btn-delete" href="#"><i class="fas fa-trash"></i>Eliminar </a>',
                         orderable: false
                     },
-                   
+
                 ],
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 buttons: [
@@ -41,6 +41,31 @@ $(document).ready(function () {
         var id = row.find('td:eq(0)').text();
         // Aquí puedes realizar las acciones correspondientes con el id recuperado
         console.log("Id de la fila seleccionada: " + id);
+
+        let url = "/users/" + id
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (response) {
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Se ha enviado el get'
+                })
+            },
+            error: function (xhr, status, error) {
+                // Código a ejecutar si se produjo un error al realizar la solicitud
+
+                Swal.fire({
+                    icon: 'error',
+                    title: xhr.responseJSON.ErrorType,
+                    text: xhr.responseJSON.Message
+                })
+            }
+        });
+
+
+
     });
 
     $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
