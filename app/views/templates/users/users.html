@@ -8,6 +8,12 @@
     href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sl-1.6.2/datatables.min.css"
     rel="stylesheet" />
 
+<style>
+    .text-title {
+        color: #747579;
+
+    }
+</style>
 
 {% endblock %}
 
@@ -74,21 +80,96 @@
 <!-- /.content-wrapper -->
 
 
+<!-- HTML del modal -->
+<div class="modal" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="modalUsuarioLabel">Informacion del usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <!-- Profile picture -->
+                    <div class="avatar avatar-xl mb-3">
+                        <img class="avatar-img rounded-circle border border-white border-3 shadow"
+                            src="{{url_for('static', filename='img/user1.png')}}" alt="">
+                    </div>
 
-<input hidden id="url_data" value="{{url_for('users.users_list')}}">
+                    <!-- Information START -->
+                    <div class="row">
 
-{% endblock %}
+                        <!-- Information item -->
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-borderless">
+                                <li class="list-group-item">
+                                    <span class="text-title">Rol:</span>
+                                    <span id="rolUsuario" class="h6 mb-0 font-weight-bold text-capitalize"></span>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <span class="text-title">Nombre completo:</span>
+                                    <span class="text-capitalize h6 mb-0 font-weight-bold" id="nombreUsuario" ></span> 
+                                    <span class="text-capitalize h6 mb-0 font-weight-bold" id="apellidoUsuario"></span>
+                                </li>
 
 
 
-{% block links_js %}
+                                <li class="list-group-item">
+                                    <span class="text-title">Telefono:</span>
+                                    <span class="h6 mb-0 font-weight-bold">+123 456 789 10</span>
+                                </li>
+                            </ul>
+                        </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script
-    src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sl-1.6.2/datatables.min.js"></script>
+                        <!-- Information item -->
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-borderless">
+                                <li class="list-group-item">
+                                    <span class="text-title">Email </span>
+                                    <span id="emailUsuario" class="h6 mb-0 font-weight-bold"></span>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <span class="text-title">Locacion:</span>
+                                    <span class="h6 mb-0 font-weight-bold">California</span>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <span class="text-title">Fecha de registro:</span>
+                                    <span class="h6 mb-0 font-weight-bold">29 Aug 2019</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul>
 
 
-<script src="{{url_for('static', filename='js/users/list_users.js')}}"></script>
 
-{% endblock %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <input hidden id="url_data" value="{{url_for('users.users_list')}}">
+
+    {% endblock %}
+
+
+
+    {% block links_js %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sl-1.6.2/datatables.min.js"></script>
+
+
+    <script src="{{url_for('static', filename='js/users/list_users.js')}}"></script>
+
+    {% endblock %}

@@ -47,11 +47,18 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             success: function (response) {
-                
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Se ha enviado el get'
-                })
+                // Actualizar contenido de cada span con los datos del objeto
+                $('#apellidoUsuario').text(response.apellido);
+                $('#emailUsuario').text(response.email);
+                $('#idUsuario').text(response.id);
+                $('#isAdminUsuario').text(response.is_admin ? 'Sí' : 'No');
+                $('#nombreUsuario').text(response.name);
+                $('#contraseñaUsuario').text(response.password);
+                $('#rolUsuario').text(response.rol);
+
+                // Mostrar el modal
+                $('#modalUsuario').modal('show');
+
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud
