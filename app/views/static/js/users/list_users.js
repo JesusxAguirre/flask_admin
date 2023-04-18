@@ -36,19 +36,21 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     $('#tabla_usuarios tbody').on('click', '.btn-view', function () {
+        var row = $(this).closest('tr');
+        var id = row.find('td:eq(0)').text();
+        // Aquí puedes realizar las acciones correspondientes con el id recuperado
+        console.log("Id de la fila seleccionada: " + id);
+    });
+
+    $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
+        var row = $(this).closest('tr');
+        var id = row.find('td:eq(0)').text();
+        // Aquí puedes realizar las acciones correspondientes con el id recuperado
+        console.log("Id de la fila seleccionada: " + id);
+    });
+
+    $('#tabla_usuarios tbody').on('click', '.btn-delete', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
         // Aquí puedes realizar las acciones correspondientes con el id recuperado
