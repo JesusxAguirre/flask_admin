@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, jsonif
 from flask_login import current_user, login_required
 from ..models.User import User
 from ..controller import user_controller
+from babel.dates import format_datetime
 
 
 
@@ -62,5 +63,6 @@ def users_get_details(id_):
     #eliminando del diccionario esa posicion del
     del user_new['_sa_instance_state']
     
+    user_new['fecha_registro'] = format_datetime(user_new['fecha_registro'], locale='es_ES')
     return user_new, 200
 
