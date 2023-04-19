@@ -60,7 +60,7 @@ $(document).ready(function () {
                
 
                 // Mostrar el modal
-                $('#modalUsuario').modal('show');
+                $('#modalVer').modal('show');
 
             },
             error: function (xhr, status, error) {
@@ -82,8 +82,37 @@ $(document).ready(function () {
     $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
-        // Aquí puedes realizar las acciones correspondientes con el id recuperado
-        console.log("Id de la fila seleccionada: " + id);
+            
+        
+        let url = "/users/" + id
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (response) {
+                
+                // Actualizar contenido de cada span con los datos del objeto
+                $("#rol option[value="+ response.rol +"]").attr("selected",true);
+                $('#name').text(response.name);
+                $('#apellido').text(response.apellido);
+                $('#email').text(response.email);
+             
+                // Mostrar el modal
+                $('#modalEditar').modal('show');
+
+            },
+            error: function (xhr, status, error) {
+                // Código a ejecutar si se produjo un error al realizar la solicitud
+
+                Swal.fire({
+                    icon: 'error',
+                    title: xhr.responseJSON.ErrorType,
+                    text: xhr.responseJSON.Message
+                })
+            }
+        }); 
+
+
+
     });
 
 
