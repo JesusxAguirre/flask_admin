@@ -4,6 +4,7 @@ from sqlalchemy import select
 from flask_sqlalchemy import SQLAlchemy
 from ..models.exceptions import UserAlreadyExist,UserNotExist
 
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -16,7 +17,10 @@ class User(db.Model,UserMixin):
     name = db.Column(db.String(12))
     apellido = db.Column(db.String(12))
     email = db.Column(db.String(256), unique=True, nullable=False)
-    password = db.Column(db.String(256), nullable=False)
+    password = db.Column(db.String(20), nullable=False)
+    telefono = db.Column(db.String(20))
+    direccion = db.Column(db.String(20))
+    fecha_registro = db.Column(db.Date(), default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
     rol = db.Column(db.String(30), default = "Invitado")
 
