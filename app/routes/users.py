@@ -64,5 +64,8 @@ def users_get_details(id_):
     del user_new['_sa_instance_state']
     
     user_new['fecha_registro'] = format_datetime(user_new['fecha_registro'], locale='es_ES')
+
+    user_new['fecha_registro'] =user_new['fecha_registro'].split(',')[0].strip()
+
     return user_new, 200
 
