@@ -4,8 +4,6 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-
-            console.log(data)
             $('#tabla_usuarios').DataTable({
                 data: data,
                 columns: [
@@ -36,6 +34,8 @@ $(document).ready(function () {
     });
 
 
+
+    //PULSACION DE BOTON DE EDIT SOLICITUD GET POR URL ASINCRONICA
     $('#tabla_usuarios tbody').on('click', '.btn-view', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
@@ -47,14 +47,17 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             success: function (response) {
+                
                 // Actualizar contenido de cada span con los datos del objeto
+                $('#rolUsuario').text(response.rol);
+                $('#nombreUsuario').text(response.name);
                 $('#apellidoUsuario').text(response.apellido);
                 $('#emailUsuario').text(response.email);
-                $('#idUsuario').text(response.id);
-                $('#isAdminUsuario').text(response.is_admin ? 'Sí' : 'No');
-                $('#nombreUsuario').text(response.name);
-                $('#contraseñaUsuario').text(response.password);
-                $('#rolUsuario').text(response.rol);
+                $('#telefonoUsuario').text(response.telefono ? response.telefono : 'Sin identificar');
+                $('#direccionUsuario').text(response.direccion ? response.direccion : 'Sin identificar');
+                $('#fechaUsuario').text(response.fecha_registro);
+               
+               
 
                 // Mostrar el modal
                 $('#modalUsuario').modal('show');
@@ -70,11 +73,12 @@ $(document).ready(function () {
                 })
             }
         });
-
-
-
     });
 
+
+
+
+    //PULSACION DE BOTON EDITAR PETICICION PUT
     $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
@@ -82,6 +86,8 @@ $(document).ready(function () {
         console.log("Id de la fila seleccionada: " + id);
     });
 
+
+    //PULSACION DE BOTON DELETE PETICION DELETE
     $('#tabla_usuarios tbody').on('click', '.btn-delete', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
