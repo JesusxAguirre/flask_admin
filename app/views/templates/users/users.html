@@ -13,6 +13,7 @@
         color: #747579;
 
     }
+
     .custom-disabled {
         background-color: #f8f9fa;
         pointer-events: none;
@@ -173,27 +174,30 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nombre </label>
-                            <span class="form-control custom-disabled text-capitalize" id="name" ></span>
+                            <span class="form-control custom-disabled text-capitalize" id="name"></span>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Apellido </label>
-                            <span id="apellido"  class="form-control custom-disabled text-capitalize"  ></span>
+                            <span id="apellido" class="form-control custom-disabled text-capitalize"></span>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email </label>
-                            <span id="email" class="form-control custom-disabled " ></span>
+                            <span id="email" class="form-control custom-disabled "></span>
                         </div>
-                        <div class="form-group">
-                            <label>Rol</label>
-                            <select id="rol" class="form-control">
-                                <option value="admin">Admin</option>
-                                <option value="gerente">Gerente</option>
-                                <option value="almacenista">Almacenista</option>
-                                <option value="vendedora">Vendedora</option>
-                            </select>
+                        <div id="grupo__roles">
+                            <div class="form-group">
+                                <label>Rol</label>
+                                <select id="rol" class="form-control" name="roles">
+                                    <option value="admin">Admin</option>
+                                    <option value="gerente">Gerente</option>
+                                    <option value="almacenista">Almacenista</option>
+                                    <option value="vendedora">Vendedora</option>
+                                </select>
+                            </div>
+                            <p  class="text-danger d-none">Selecciona un rol valido</p>
                         </div>
 
-                        
+
                     </div>
 
 

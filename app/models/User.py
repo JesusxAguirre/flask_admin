@@ -50,36 +50,36 @@ class User(db.Model, UserMixin):
             cuando no haya una excepcion
         """
 
-    # Obtener el usuario existente en la base de datos
-    existing_user = User.query.filter_by(id=user.id).first()
+        # Obtener el usuario existente en la base de datos
+        existing_user = User.query.filter_by(id=user.id).first()
 
-    if existing_user is None:
-        raise UserNotExist(
-            f"El usuario {user.id} no existe en la base de datos")
+        if existing_user is None:
+            raise UserNotExist(
+                f"El usuario {user.id} no existe en la base de datos")
 
-    # Actualizar los atributos del usuario existente con los valores del objeto user, solo si son diferentes de None
-    if user.name is not None:
-        existing_user.name = user.name
-    if user.apellido is not None:
-        existing_user.apellido = user.apellido
-    if user.email is not None:
-        existing_user.email = user.email
-    if user.password is not None:
-        existing_user.password = user.password
-    if user.telefono is not None:
-        existing_user.telefono = user.telefono
-    if user.direccion is not None:
-        existing_user.direccion = user.direccion
-    if user.fecha_registro is not None:
-        existing_user.fecha_registro = user.fecha_registro
-    if user.is_admin is not None:
-        existing_user.is_admin = user.is_admin
-    if user.rol is not None:
-        existing_user.rol = user.rol
+        # Actualizar los atributos del usuario existente con los valores del objeto user, solo si son diferentes de None
+        if user.name is not None:
+            existing_user.name = user.name
+        if user.apellido is not None:
+            existing_user.apellido = user.apellido
+        if user.email is not None:
+            existing_user.email = user.email
+        if user.password is not None:
+            existing_user.password = user.password
+        if user.telefono is not None:
+            existing_user.telefono = user.telefono
+        if user.direccion is not None:
+            existing_user.direccion = user.direccion
+        if user.fecha_registro is not None:
+            existing_user.fecha_registro = user.fecha_registro
+        if user.is_admin is not None:
+            existing_user.is_admin = user.is_admin
+        if user.rol is not None:
+            existing_user.rol = user.rol
 
-    db.session.commit()  # Realizar el commit para guardar los cambios en la base de datos
+        db.session.commit()  # Realizar el commit para guardar los cambios en la base de datos
 
-    return {"msj": "Datos del usuario modificado correctamente", "status_Code": 200}
+        return {"msj": "Datos del usuario modificado correctamente", "status_Code": 200}
 
     def delete(self):
         pass
