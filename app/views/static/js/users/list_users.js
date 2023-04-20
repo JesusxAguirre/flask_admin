@@ -43,7 +43,7 @@ $('#tabla_usuarios tbody').on('click', '.btn-view', function () {
     // Aquí puedes realizar las acciones correspondientes con el id recuperado
     console.log("Id de la fila seleccionada: " + id);
 
-    let url = "/users/" + id
+    let url = document.getElementById("url_users").value + id
     $.ajax({
         type: 'GET',
         url: url,
@@ -125,7 +125,8 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
     var id = row.find('td:eq(0)').text();
 
 
-    let url = "/users/" + id
+    let url = document.getElementById("url_users").value + id
+    
     $.ajax({
         type: 'GET',
         url: url,
@@ -148,7 +149,9 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
 
             $('#formulario_editar').submit(function (event) {
                 event.preventDefault(); // Evita que el formulario se envíe automáticamente
-                if (!(campos.rol)) {
+
+                
+                if (!(campos.roles)) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Lo siento ',
@@ -156,11 +159,17 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                         position: 'center'
                     })
                 } else {
-                    let url = document.getElementById("url_register").value
+                    let url = document.getElementById("url_users").value
+
+                    var data = {
+                        rol : $(this).serialize(),
+                        id : id
+                    }
+
                     $.ajax({
                         type: 'PUT',
                         url: url,
-                        data: $(this).serialize(),// Obtiene los datos del formulario
+                        data: data,// Obtiene los datos del formulario
                         success: function (response) {
                             document.getElementById("formulario").reset()
                             for (let key in campos) {
@@ -168,21 +177,13 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                             }
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Te has registrado correctamente en el sistema'
+                                title: 'Se ha editado correctamente el usuario'
                             })
                         },
                         error: function (xhr, status, error) {
                             // Código a ejecutar si se produjo un error al realizar la solicitud
 
-                            if (xhr.responseJSON.ErrorType == "UserAlreadyExist") {
-                                document.querySelector(`#grupo__email p`).classList.remove('d-none');
-
-                                document.querySelector(`#grupo__email p`).classList.add('d-block');
-                                document.querySelector(`#grupo__email input`).classList.add('is-invalid')
-                                campos.email = false;
-
-                                document.getElementById('mensaje_email').textContent = xhr.responseJSON.Message
-                            }
+                            
                             Swal.fire({
                                 icon: 'error',
                                 title: xhr.responseJSON.ErrorType,
