@@ -82,11 +82,11 @@ $(document).ready(function () {
     $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
         var row = $(this).closest('tr');
         var id = row.find('td:eq(0)').text();
-            
+
         
         let url = "/users/" + id
         $.ajax({
-            type: 'GET',
+            type: 'PUT',
             url: url,
             success: function (response) {
                 

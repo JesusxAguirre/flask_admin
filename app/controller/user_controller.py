@@ -3,6 +3,15 @@ from ..helpers import helpers
 
 
 
+def get_all():
+
+    return User.get_all()
+
+def  get_by_id(user : User)->User:
+
+    helpers.validate_user_id(user.id)
+    
+    return user.get_by_id(user)
 
 def create(user: User):
     user.email=helpers.sanitizar_caracteres(user.email)
@@ -12,17 +21,10 @@ def create(user: User):
     user = helpers.validate_users(user)
     return user.create(user)
 
-def get_all():
 
-    return User.get_all()
+def update(user: User):
 
-def  get_by_id(user : User)->User:
-
-    
-
-    return user.get_by_id(user)
-
-
+    return user.update(user)
 
 
 

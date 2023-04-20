@@ -46,6 +46,19 @@ def validate_user_already_exist_login(boleana : bool)->None:
     if boleana is False:
         raise  UserNotExist(f"El email no existe en la bd")
     
+def validate_user_id(id_ : str)-> None:
+    """validando que la id sea entero con una excepcion
+
+    Args:
+        id_ (int): id de usuario
+
+    Returns:
+        None: no retorna nada
+    """
+
+
+    if not id_.isdigit():
+        raise InvalidadData(f"estas enviando un id que no es de tipo numerico")
 
 
 #VALIDACIONES REUTILIZABLES
