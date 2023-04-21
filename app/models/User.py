@@ -85,6 +85,15 @@ class User(db.Model, UserMixin):
         pass
 
     def get_all():
+        page = db.paginate(db.select(User).order_by(User.name))
+
+        for user in page:
+            print(user)
+            print(user.name)
+            print(page.has_next)
+            print(page.items)
+
+
 
         return User.query.all()
 
@@ -116,3 +125,17 @@ class User(db.Model, UserMixin):
     def user_exist(self, _user: object) -> bool:
 
         return bool(User.query.filter_by(email=_user.email).first())
+
+
+    def to_dict(self):
+
+        return {
+            "id": self.id,
+            "name": self.name,
+            "apellido": self.apellido,
+            "email": self.email,
+            "telefono": self.telefono,
+            "direccion": self.direccion,
+            "fecha_registro": self.fecha_registro,
+            "rol": self.rol
+        }
