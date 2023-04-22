@@ -96,7 +96,7 @@ const ValidarFormulario = (e) => {
 
 const ValidarSelect = ( input, campo) => {
     
-	if (input.value === "admin" || input.value === "gerente" || input.value === "almacenista" || input.value === "vendedora") {
+	if (input.value === "admin" || input.value === "gerente" || input.value === "almacenista" || input.value === "vendedora" || input.value === "Invitado") {
         document.querySelector(`#grupo__${campo} p`).classList.remove('d-block');
         document.querySelector(`#grupo__${campo} select`).classList.remove('is-invalid')
 
@@ -167,18 +167,23 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                         url: url,
                         data: $(this).serialize(),// Obtiene los datos del formulario
                         success: function (response) {
+                            $('#modalEditar').modal('hide');
                             $("#formulario_editar").trigger("reset");
 
                             for (let key in campos) {
                                 campos[key] = false;
                             }
 
-                            console.log(response)
 
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Se ha editado correctamente el usuario'
                             })
+
+                            if (response.url) {
+                                setTimeout(location.href = response.url, 10000)
+                            }
+                            
                         },
                         error: function (xhr, status, error) {
                             // Código a ejecutar si se produjo un error al realizar la solicitud

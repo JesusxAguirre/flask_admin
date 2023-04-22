@@ -11,7 +11,7 @@ users_scope = Blueprint("users", __name__)
 @users_scope.route("/usuarios", methods=["GET"])
 @login_required
 def users_list():
-    if current_user.rol != "admin":
+    if current_user.rol not in ['admin', 'gerente']:
         abort(403)
 
     users = user_controller.get_all()
@@ -25,7 +25,7 @@ def users_list():
 @login_required
 def users_get():
 
-    if current_user.rol != "admin":
+    if current_user.rol not in ['admin', 'gerente']:
         abort(403)
 
     return render_template("users/users.html")
@@ -90,8 +90,16 @@ def users_update(id_):
 
     user_actualizado =user_controller.update(user)
 
-    if current_user.id == id_ :
-        redirect(url_for("auth.logout"))
+
+    print(current_user.id)
+    print(id_)
+
+    if str(current_user.id) == str(id_) :
+        
+        return {
+            "msj": "Has editado correctamente tu usuario",
+            "status_code": 200,
+            "url": url_for("auth.logout")},200
 
 
     return user_actualizado.to_dict(),200
