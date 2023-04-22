@@ -193,6 +193,7 @@
                                     <option value="gerente">Gerente</option>
                                     <option value="almacenista">Almacenista</option>
                                     <option value="vendedora">Vendedora</option>
+                                    <option value="Invitado">Invitado</option>
                                 </select>
                             </div>
                             <p  class="text-danger d-none">Selecciona un rol valido</p>
@@ -217,6 +218,7 @@
 
 <input hidden id="url_data" value="{{url_for('users.users_list')}}">
 <input hidded id="url_users" value="{{url_for('users.users_get')}}">
+
 {% endblock %}
 
 

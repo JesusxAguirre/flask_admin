@@ -131,7 +131,7 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
         type: 'GET',
         url: url,
         success: function (response) {
-
+            
             // Actualizar contenido de cada span con los datos del objeto
             $("#rol option[value=" + response.rol + "]").attr("selected", true);
             $('#name').text(response.name);
@@ -161,13 +161,14 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                 } else {
                     let url = document.getElementById("url_users").value + id
                     
-                    
+                    console.log($(this).serialize())
                     $.ajax({
                         type: 'PUT',
                         url: url,
-                        data: $(this).serialize,// Obtiene los datos del formulario
+                        data: $(this).serialize(),// Obtiene los datos del formulario
                         success: function (response) {
-                            document.getElementById("formulario").reset()
+                            $("#formulario_editar").trigger("reset");
+
                             for (let key in campos) {
                                 campos[key] = false;
                             }

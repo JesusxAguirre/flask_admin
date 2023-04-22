@@ -16,8 +16,7 @@ def users_list():
 
     users = user_controller.get_all()
 
-    users = [{'id': user.id, 'name': user.name,
-              'apellido': user.apellido, 'email': user.email} for user in users]
+    users = [ user.to_dict() for user in users]
 
     return users, 200
 
@@ -25,16 +24,6 @@ def users_list():
 @users_scope.route("/", methods=["GET"])
 @login_required
 def users_get():
-
-    if current_user.rol != "admin":
-        abort(403)
-
-    return render_template("users/users.html")
-
-
-@users_scope.route("/<int:page>", methods=["GET"])
-@login_required
-def users_get_paginate(page=1, per_page=10):
 
     if current_user.rol != "admin":
         abort(403)
@@ -79,9 +68,9 @@ def users_get_details(id_):
     return user_new, 200
 
 
-@users_scope.route("/update", methods=["PUT"])
+@users_scope.route("/<id_>", methods = ["PUT"])
 @login_required
-def users_update():
+def users_update(id_):
     """funcion que actualiza el rol de un usuario
 
     Args:
@@ -95,6 +84,10 @@ def users_update():
     if current_user.rol not in ['admin', 'gerente']:
         abort(403)
 
-    data = request.data
+    rol=request.args.get("roles")
 
-    print(data)
+    print(rol)
+
+    return {
+    "msj": "jpadsasdasdojasdjkasjdklajds"
+    }
