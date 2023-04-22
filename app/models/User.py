@@ -30,16 +30,16 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def create(self, User: object):
-        if self.user_exist(User):
+    def create(self, user_: object) -> object:
+        if self.user_exist(user_):
             raise UserAlreadyExist(f"El email  ya existe en la bd")
 
-        db.session.add(User)
+        db.session.add(user_)
         db.session.commit()
 
-        return {"msj": "Usuario registrado exitosamente", "status_code": 200}
+        return user_
 
-    def update(self, user: object) -> dict:
+    def update(self, user: object) -> object:
         """funcion que actualiza los datos del usuario segun los datos enviados
 
         Args:
@@ -79,7 +79,7 @@ class User(db.Model, UserMixin):
 
         db.session.commit()  # Realizar el commit para guardar los cambios en la base de datos
 
-        return {"msj": "Datos del usuario modificado correctamente", "status_Code": 200}
+        return existing_user
 
     def delete(self):
         pass

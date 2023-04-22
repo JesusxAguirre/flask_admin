@@ -172,6 +172,9 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                             for (let key in campos) {
                                 campos[key] = false;
                             }
+
+                            console.log(response)
+
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Se ha editado correctamente el usuario'

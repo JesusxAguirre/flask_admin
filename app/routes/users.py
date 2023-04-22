@@ -73,7 +73,7 @@ def users_get_details(id_):
 def users_update(id_):
     """funcion que actualiza el rol de un usuario
 
-    Args:
+    Args: id del usuario que se quiere actualizar
 
     Returns:
         dictionary: diccionario con respuesta de la solicitud
@@ -88,7 +88,10 @@ def users_update(id_):
 
     user = User(rol= rol, id = id_)
 
-    response =user_controller.update(user)
+    user_actualizado =user_controller.update(user)
+
+    if current_user.id == id_ :
+        redirect(url_for("auth.logout"))
 
 
-    return response,200
+    return user_actualizado.to_dict(),200
