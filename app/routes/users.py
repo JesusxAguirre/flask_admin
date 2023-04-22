@@ -84,10 +84,11 @@ def users_update(id_):
     if current_user.rol not in ['admin', 'gerente']:
         abort(403)
 
-    rol=request.args.get("roles")
+    rol = request.form['roles']
 
-    print(rol)
+    user = User(rol= rol, id = id_)
 
-    return {
-    "msj": "jpadsasdasdojasdjkasjdklajds"
-    }
+    response =user_controller.update(user)
+
+
+    return response,200

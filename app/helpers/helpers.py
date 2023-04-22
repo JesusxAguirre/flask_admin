@@ -60,6 +60,15 @@ def validate_user_id(id_ : str)-> None:
     if not id_.isdigit():
         raise InvalidadData(f"estas enviando un id que no es de tipo numerico")
 
+def validate_user_update(user: User)-> None:
+
+    if not user.id.isdigit():
+        raise InvalidadData(f"Estas envindo un id que no es de tipo numerico")
+
+    if user.rol not in ["almacenista","Invitado","admin","vendedora","gerente"]:
+        raise InvalidadData(F"Estas enviando un rol que no existe en la BD")
+
+
 
 #VALIDACIONES REUTILIZABLES
 def security_validation_email(email : str)-> bool:

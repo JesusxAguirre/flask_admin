@@ -85,13 +85,9 @@ class User(db.Model, UserMixin):
         pass
 
     def get_all():
-        page = db.paginate(db.select(User).order_by(User.name))
+        #page = db.paginate(db.select(User).order_by(User.name))
 
-        for user in page:
-            print(user)
-            print(user.name)
-            print(page.has_next)
-            print(page.items)
+        
 
 
 
@@ -120,7 +116,14 @@ class User(db.Model, UserMixin):
 
     def get_by_email(self, user):
 
-        return User.query.filter_by(email=user.email).first()
+        user_ = User.query.filter_by(email=user.email).first()
+        
+        
+        if user_ is None:
+
+            raise UserNotExist(f"el usuario con email {user.email} no existe")
+        
+        return user_
 
     def user_exist(self, _user: object) -> bool:
 

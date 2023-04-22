@@ -28,7 +28,7 @@ def login_get():
 def login_post():
 
     if request.method == "POST":
-        print(request.form)
+        
 
         email = request.form['email']
         password = request.form['password']
@@ -45,7 +45,7 @@ def login_post():
 
         _user =user_controller.login(user)
 
-        login_user(_user,remember)
+        login_user(_user,remember,duration=None)
        
 
         return {"msj": "has iniciado sesion correctamente", "status_Code": 200 ,"url": url_for("security.dashboard_get")},200

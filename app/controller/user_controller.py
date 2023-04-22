@@ -24,6 +24,8 @@ def create(user: User):
 
 def update(user: User):
 
+    helpers.validate_user_update(user)
+
     return user.update(user)
 
 
