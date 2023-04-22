@@ -73,9 +73,18 @@ $('#formulario').submit(function (event) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Has iniciado seccion correctamente'
-                })
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                     window.location.replace(document.getElementById('url_dashboard').value);
+                    } 
+                  })
 
-                setTimeout(location.href = document.getElementById('url_dashboard').value, 800000)
+    
+                
+                setTimeout(function() {
+                    window.location.replace(document.getElementById('url_dashboard').value);
+                  },4000);
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud
@@ -101,3 +110,6 @@ inputs.forEach((input) => {
     input.addEventListener('blur', validar_formulario);
 
 });
+
+
+

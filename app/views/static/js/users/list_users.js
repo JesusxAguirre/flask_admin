@@ -181,7 +181,9 @@ $('#tabla_usuarios tbody').on('click', '.btn-edit', function () {
                             })
 
                             if (response.url) {
-                                setTimeout(location.href = response.url, 10000)
+                                setTimeout(function() {
+                                    window.location.replace(response.url);
+                                  },2000);
                             }
                             
                         },
