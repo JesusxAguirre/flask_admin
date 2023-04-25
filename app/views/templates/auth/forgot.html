@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} Forgot Password  {% endblock %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <!-- Google Font: Source Sans Pro -->
@@ -17,18 +17,20 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.css')}}">
 
+
+   
 </head>
 
 <body class="hold-transition register-page">
     
     <div  class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-primary " >
+        <div  class="card card-outline card-primary " >
             <div class="card-header text-center bg-primary">
                 <a href="#  " class="h1"><b>Market</b>Empresa</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg text-capitalize font-weight-bold">Iniciar sesion</p>
+                <p class="login-box-msg text-capitalize font-weight-bold">¿Olvidaste tu contraseña? aqui puedes recuperarla con un mensaje a tu correo</p>
 
                 <form id="formulario"  method="post" novalidate>
                     <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -43,39 +45,20 @@
                         </div>
                         <p id="mensaje_email" class="text-danger d-none">Escriba un email valido</p>
                     </div>
-                    <div id="grupo__password">
-                        <div class="input-group mb-3">
-                            <input name="password" type="password" class="form-control" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-danger d-none"> Algo esta equivocado en la clave o el usuario</p>
-                    </div>
                     <div class="row  ">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                              <input  name="remember_me" type="checkbox" id="remember">
-                              <label for="remember">
-                                Recuerdame
-                              </label>
-                            </div>
-                          </div>
+                        
                         <div class="col-4 ">
-                            <button type="submit" class="btn btn-primary btn-block">Iniciar sesion</button>
+                            <button type="submit" class="btn btn-primary btn-block">Enviar email</button>
                         </div>
                         <!-- /.col -->
                     </div>
+                    
                 </form>
 
 
-                <p class="mb-1">
-                    <a href="{{url_for('auth.recuperar_password_get')}}">Olvidé mi contraseña</a>
-                </p>
+          
                 <p class="mb-0">
-                    <a href="{{url_for('auth.register_get')}}" class="text-center">Registrar un nuevo usuario</a>
+                    <a href="{{url_for('auth.login_get')}}" class="text-center">Login</a>
                 </p>
             </div>
             <!-- /.card-body -->
@@ -85,14 +68,14 @@
     <!-- /.login-box -->
 
     <input hidden id="url_login" value="{{ url_for('auth.login_get') }}" />
-    <input hidden id="url_dashboard" value="{{url_for('security.dashboard_get')}}">
+    
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{url_for('static', filename='adminlte/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{url_for('static', filename='adminlte/dist/js/adminlte.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/auth/login.js')}}"></script>
+    <script src="{{url_for('static', filename='js/auth/forgot_password.js')}}"></script>
     <script src="{{url_for('static', filename='js/sweetalert2.js')}}"></script>
 
     

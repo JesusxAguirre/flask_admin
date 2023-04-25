@@ -7,6 +7,12 @@ from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__, static_folder=Config.STATIC_FOLDER, template_folder=Config.TEMPLATE_FOLDER)
+app.config['MAIL_SERVER']= Config.MAIL_SERVER
+app.config['MAIL_PORT'] = Config.MAIL_PORT
+app.config['MAIL_USERNAME'] = Config.MAIL_USERNAME
+app.config['MAIL_PASSWORD'] = Config.MAIL_PASSWORD
+app.config['MAIL_USE_TLS'] = Config.MAIL_USE_TLS
+app.config['MAIL_USE_SSL'] = Config.MAIL_USE_SSL
 app.config.from_object(Config)
 
 #creando token crsf

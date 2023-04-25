@@ -82,6 +82,24 @@ def register_post():
 
         return response, 200
     
+#RECUPERAR CONTRASEÑA GET
+@auth_scope.route("/forgot_password", methods = ["GET"])
+def recuperar_password_get():
+
+
+
+    return render_template("auth/forgot.html")
+
+#RECUPERAR CONTRASEÑA POST
+@auth_scope.route("/forgot_password", methods = ["POST"])
+def recuperar_password_post():
+
+
+
+    return {"msj":"se envia correctamente"},200
+
+
+
 
 #CERRAR SESION    
 @auth_scope.route("/logout", methods=["GET"])
