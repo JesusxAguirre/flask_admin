@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{% block title %} Forgot Password  {% endblock %}</title>
+    <title>{% block title %} Forgot Password {% endblock %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <!-- Google Font: Source Sans Pro -->
@@ -18,45 +18,48 @@
     <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.css')}}">
 
 
-   
+
 </head>
 
 <body class="hold-transition register-page">
-    
-    <div  class="login-box">
+
+    <div class="login-box">
         <!-- /.login-logo -->
-        <div  class="card card-outline card-primary " >
+        <div class="card card-outline card-primary ">
             <div class="card-header text-center bg-primary">
                 <a href="#  " class="h1"><b>Market</b>Empresa</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg text-capitalize font-weight-bold">¿Olvidaste tu contraseña? aqui puedes recuperarla con un mensaje a tu correo</p>
+                <p class="login-box-msg text-capitalize font-weight-bold">¿Olvidaste tu contraseña? aqui puedes
+                    recuperarla con un mensaje a tu correo</p>
 
-                <form id="formulario"  method="post" novalidate>
-                    <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <div id="grupo__email">
-                        <div class="input-group mb-3">
-                            <input name="email" type="email" class="form-control" placeholder="Email">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
+                <form id="formulario" method="post" novalidate>
+                    
+                        <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <div id="grupo__email">
+                            <div class="input-group mb-3">
+                                <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
                                 </div>
                             </div>
+                            <p id="mensaje_email" class="text-danger d-none">Escriba un email valido</p>
                         </div>
-                        <p id="mensaje_email" class="text-danger d-none">Escriba un email valido</p>
-                    </div>
-                    <div class="row  ">
-                        
+                    
+                    <div  class="row  ">
+
                         <div class="col-4 ">
-                            <button type="submit" class="btn btn-primary btn-block">Enviar email</button>
+                            <button id="boton_submit" form="formulario" class="btn btn-primary btn-block">Enviar email</button>
                         </div>
                         <!-- /.col -->
                     </div>
-                    
+
                 </form>
 
 
-          
+
                 <p class="mb-0">
                     <a href="{{url_for('auth.login_get')}}" class="text-center">Login</a>
                 </p>
@@ -67,8 +70,8 @@
     </div>
     <!-- /.login-box -->
 
-    <input hidden id="url_login" value="{{ url_for('auth.login_get') }}" />
-    
+    <input hidden id="url_forgot" value="{{ url_for('auth.recuperar_password_post') }}" />
+
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
@@ -78,8 +81,8 @@
     <script src="{{url_for('static', filename='js/auth/forgot_password.js')}}"></script>
     <script src="{{url_for('static', filename='js/sweetalert2.js')}}"></script>
 
-    
- 
+
+
 </body>
 
 </html>
