@@ -89,7 +89,15 @@ def recuperar_password_get():
 def recuperar_password_post():
 
     if 'token_correo' in request.form:
-        pass
+
+        email = request.form['email']
+        token_correo = request.form['token_correo']
+
+        user_ = User(email=email, token_correo=token_correo)
+
+        response=user_controller.forgot_password(user_)
+        
+        return response,200
 
     email = request.form['email']
 

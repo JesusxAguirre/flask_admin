@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, default=False)
     rol = db.Column(db.String(30), default="Invitado")
 
+    token_correo = False
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
 

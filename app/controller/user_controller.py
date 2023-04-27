@@ -34,6 +34,10 @@ def update(user: User)-> User:
     return user.update(user)
 
 
+def forgot_password(user_: User)-> User:
+
+    helpers.validate_code_created_time()
+
 
 #unica funcion que devuelve alfo diferente a un objeto usuario por ser el login
 def login(user : User)-> User:
