@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required, LoginManager
 from ..models.User import User
 from ..controller import user_controller
-
+from ..models import Mail
 
 auth_scope = Blueprint("auth", __name__)
 login_manager = LoginManager()
@@ -94,7 +94,13 @@ def recuperar_password_get():
 @auth_scope.route("/forgot_password", methods = ["POST"])
 def recuperar_password_post():
 
+    email = request.form['email']
 
+    user = User(email = email)
+
+    user_ = user_controller.get_by_email(user)
+
+    Mail.send_code_password(user_)
 
     return {"msj":"se envia correctamente"},200
 

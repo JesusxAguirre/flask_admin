@@ -1,8 +1,8 @@
 from flask import Flask
 from config import Config
-from flask_sqlalchemy import SQLAlchemy
 from .routes import login_manager, auth_scope, errors_scope,security_scope, users_scope
 from .models.User import db
+from .models.Mail import mail
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -18,6 +18,7 @@ app.config.from_object(Config)
 #creando token crsf
 csrf = CSRFProtect(app)
 
+
 #registrando el modulo de auth
 app.register_blueprint(auth_scope, url_prefix="/")
 app.register_blueprint(errors_scope, url_prefix="/")
@@ -32,6 +33,10 @@ login_manager.init_app(app)
 
 #instanciando token
 csrf.init_app(app)
+
+
+#instanciando la libreria mail
+mail.init_app(app)
 
 #creando tablas
 @app.before_first_request

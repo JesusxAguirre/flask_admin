@@ -13,6 +13,11 @@ def  get_by_id(user : User)->User:
     
     return user.get_by_id(user)
 
+def get_by_email(user_ : User)-> User:
+
+    return user_.get_by_email(user_)
+
+
 def create(user: User) -> User:
     user.email=helpers.sanitizar_caracteres(user.email)
     user.name = helpers.sanitizar_caracteres(user.name)

@@ -5,12 +5,15 @@ import os
 class Config:
 
 
-    DEBUG = "True"
-    FLASK_DEBUG= "development"
+    DEBUG = True
+    FLASK_DEBUG= False
+    
+    #CONFIGURACION DE EMAIL
     MAIL_SERVER= 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USERNAME = 'quijess6@gmail.com'
-    MAIL_PASSWORD = 'QjAb7854'
+    MAIL_PASSWORD = 'onebzquvinbjzbat'
+    MAIL_DEFAULT_SENDER = 'quijess6@gmail.com'
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
 
