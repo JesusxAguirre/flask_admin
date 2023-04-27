@@ -15,7 +15,8 @@ def  get_by_id(user : User)->User:
 
 def get_by_email(user_ : User)-> User:
 
-    user_.email = helpers.sanitizar_caracteres(email)
+    
+    user_.email = helpers.sanitizar_caracteres(user_.email)
 
     return user_.get_by_email(user_)
 
