@@ -93,7 +93,11 @@ def recuperar_password_post():
         email = request.form['email']
         token_correo = request.form['token_correo']
 
-        user_ = User(email=email, token_correo=token_correo)
+        user_ = User(email=email, )
+
+        user_ = user_controller.get_by_email(user_)
+
+        user_.token_correo = token_correo
 
         response=user_controller.forgot_password(user_)
         

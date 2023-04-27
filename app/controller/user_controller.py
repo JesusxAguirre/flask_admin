@@ -1,6 +1,6 @@
 from ..models.User import User
 from ..helpers import helpers
-
+from ..models.Mail import generate_code, send_message_restore
 
 
 def get_all():
@@ -45,6 +45,11 @@ def forgot_password(user_: User)-> User:
 
     helpers.validate_forgot_password(user_)
 
+    password = generate_code()
+    user_.set_password(password)
+
+    #envio de correo con nueva clave
+    send_message_restore(password)
 
     return user_.update(user_)
 
