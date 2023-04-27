@@ -120,7 +120,7 @@ $('#formulario').submit(function (event) {
                         }, 1000);
                     },
                     willClose: () => {
-                        console.log("Alerta cerrada")
+                        window.location.replace(url);
                     }
                 });
 

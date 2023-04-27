@@ -6,3 +6,6 @@ class InvalidadData(Exception):
 
 class UserNotExist(Exception):
     pass
+
+class RequestTimeOut(Exception):
+    pass

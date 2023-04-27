@@ -17,50 +17,44 @@ def load_user(user_id):
 def login_get():
 
     if current_user.is_authenticated:
-        
+
         return redirect(url_for('security.dashboard_get'))
-    
-   
+
     return render_template("auth/login.html")
 
 
-@auth_scope.route("/", methods =["POST"])
+@auth_scope.route("/", methods=["POST"])
 def login_post():
 
     if request.method == "POST":
-        
 
         email = request.form['email']
         password = request.form['password']
-        
-         # Verificar si la casilla de verificación "Recuérdame" está seleccionada
+
+        # Verificar si la casilla de verificación "Recuérdame" está seleccionada
         if 'remember_me' in request.form:
             remember = True
         else:
             remember = False
 
+        user = User(email=email, password=password)
 
-        
-        user = User(email = email, password = password)
+        _user = user_controller.login(user)
 
-        _user =user_controller.login(user)
+        login_user(_user, remember, duration=None)
 
-        login_user(_user,remember,duration=None)
-       
-
-        return {"msj": "has iniciado sesion correctamente", "status_Code": 200 ,"url": url_for("security.dashboard_get")},200
+        return {"msj": "has iniciado sesion correctamente", "status_Code": 200, "url": url_for("security.dashboard_get")}, 200
 
 
-
-
-#REGISTRO DE USUARIO REDERIZAR PAGINA
+# REGISTRO DE USUARIO REDERIZAR PAGINA
 @auth_scope.route("/register", methods=["GET"])
 def register_get():
-   
-   
+
     return render_template("auth/register.html")
 
-#REGISTRO DE USUARIO ENVIO DE FORMULARIO
+# REGISTRO DE USUARIO ENVIO DE FORMULARIO
+
+
 @auth_scope.route("/register", methods=["POST"])
 def register_post():
 
@@ -71,8 +65,6 @@ def register_post():
         email = request.form['email']
         password = request.form['password']
 
-        
-
         user = User(name=name,
                     apellido=apellido,
                     email=email,
@@ -81,33 +73,36 @@ def register_post():
         response = user_controller.create(user)
 
         return response, 200
-    
-#RECUPERAR CONTRASEÑA GET
-@auth_scope.route("/forgot_password", methods = ["GET"])
+
+# RECUPERAR CONTRASEÑA GET
+
+
+@auth_scope.route("/forgot_password", methods=["GET"])
 def recuperar_password_get():
-
-
 
     return render_template("auth/forgot.html")
 
-#RECUPERAR CONTRASEÑA POST
-@auth_scope.route("/forgot_password", methods = ["POST"])
+# RECUPERAR CONTRASEÑA POST
+
+
+@auth_scope.route("/forgot_password", methods=["POST"])
 def recuperar_password_post():
+
+    if 'token_correo' in request.form:
+        pass
 
     email = request.form['email']
 
-    user = User(email = email)
+    user = User(email=email)
 
     user_ = user_controller.get_by_email(user)
 
     Mail.send_code_password(user_)
 
-    return {"msj":"se envia correctamente"},200
+    return {"msj": "se envia correctamente"}, 200
 
 
-
-
-#CERRAR SESION    
+# CERRAR SESION
 @auth_scope.route("/logout", methods=["GET"])
 @login_required
 def logout():

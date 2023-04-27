@@ -1,6 +1,9 @@
 from ..models.User import User
-from ..models.exceptions import InvalidadData, UserAlreadyExist, UserNotExist
+from ..models.exceptions import InvalidadData, UserAlreadyExist, UserNotExist, RequestTimeOut
 import re
+from datetime import timedelta, datetime
+from flask import session
+
 
 regex_email = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 
@@ -67,6 +70,17 @@ def validate_user_update(user: User)-> None:
 
     if user.rol not in ["almacenista","Invitado","admin","vendedora","gerente"]:
         raise InvalidadData(F"Estas enviando un rol que no existe en la BD")
+
+
+def validate_code_created_time() -> None:
+    if 'code_created_at' in session and datetime.now() > session['code_created_at'] + timedelta(minutes=5):
+            # La variable de sesión ha expirado
+            del session['code']
+            del session['code_created_at']
+            del session['email_en_recuperacion']
+
+            raise RequestTimeOut(f"El codigo de recuperacion expiro")
+            
 
 
 
