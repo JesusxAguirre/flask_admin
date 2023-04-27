@@ -15,6 +15,8 @@ def  get_by_id(user : User)->User:
 
 def get_by_email(user_ : User)-> User:
 
+    user_.email = helpers.sanitizar_caracteres(email)
+
     return user_.get_by_email(user_)
 
 
@@ -36,7 +38,15 @@ def update(user: User)-> User:
 
 def forgot_password(user_: User)-> User:
 
+    user_.email = helpers.sanitizar_caracteres(user_.email)
+    user_.token_correo = helpers.sanitizar_caracteres(user_.token_correo)
+
     helpers.validate_code_created_time()
+
+    helpers.validate_forgot_password(user_)
+
+
+    return user_.update(user_)
 
 
 #unica funcion que devuelve alfo diferente a un objeto usuario por ser el login

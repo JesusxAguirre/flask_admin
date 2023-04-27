@@ -83,6 +83,21 @@ def validate_code_created_time() -> None:
             
 
 
+#VALIDAR QUE LOS DATOS ENVIADOS PARA RESETEAR LA CONTRASEÑA SEAN VALIDOS            
+def validate_forgot_password(user_ : User)-> None:
+
+
+    if not security_validation_email(user_.email):
+
+        raise InvalidadData(f"El email : {user.email} es invalido")
+
+    if not security_validation_strings(user_.token_correo):
+
+        raise InvalidadData(f"el token no es un string")
+
+    if user_.code != session['code']:
+        
+        raise InvalidadData(f"El token enviado no es el correcto por favor escribalo correctamente")
 
 #VALIDACIONES REUTILIZABLES
 def security_validation_email(email : str)-> bool:

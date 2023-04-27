@@ -21,3 +21,12 @@ def send_code_password(user_: User) -> None:
     msg.body = f"Dear {user_.name},\n\nYour password recovery code is: {code}\n\nPlease enter this code on the password recovery page to reset your password.\n\nBest regards,\nThe Password Recovery Team"
     mail.send(msg)
 
+
+
+def send_message_restore(codigo) -> None:
+
+
+    msg = msg = Message(subject="Password Recovery Code", recipients=[session['email_en_recuperacion']])
+    msg.body = f"Tu password fue reseteada con este codigo. {codigo}"
+
+    mail.send(msg)
