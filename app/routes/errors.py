@@ -1,5 +1,5 @@
 from flask import Blueprint, Response
-from ..models.exceptions import UserAlreadyExist,InvalidadData, UserNotExist
+from ..models.exceptions import UserAlreadyExist,InvalidadData, UserNotExist, RequestTimeOut
 
 
 errors_scope = Blueprint("errors",__name__)
@@ -27,3 +27,14 @@ def handler_invalid_data(error : InvalidadData)-> Response:
     response['status_code']= 422
 
     return response,422
+
+
+@errors_scope.app_errorhandler(RequestTimeOut)
+def handler_invalid_data(error : RequestTimeOut)-> Response:
+    response = __generate_error_response(error)
+    response['status_code']= 408
+
+    return response,408
+
+
+
