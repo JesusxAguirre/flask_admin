@@ -2,6 +2,7 @@ from ..models.User import User
 from ..models.exceptions import InvalidadData, UserAlreadyExist, UserNotExist, RequestTimeOut
 import re
 from datetime import timedelta, datetime
+import pytz
 from flask import session
 
 
@@ -73,7 +74,7 @@ def validate_user_update(user: User)-> None:
 
 
 def validate_code_created_time() -> None:
-    if 'code_created_at' in session and datetime.now() > session['code_created_at'] + timedelta(minutes=5):
+    if 'code_created_at' in session and datetime.now(pytz.utc) > session['code_created_at'] + timedelta(minutes=5):
             # La variable de sesión ha expirado
             del session['code']
             del session['code_created_at']

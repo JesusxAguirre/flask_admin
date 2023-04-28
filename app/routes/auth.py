@@ -88,10 +88,11 @@ def recuperar_password_get():
 @auth_scope.route("/forgot_password", methods=["POST"])
 def recuperar_password_post():
 
-    if 'token_correo' in request.form:
-
+    
+    if 'tokenCorreo' in request.form:
+        print("enra en el if de tokenCorreo")
         email = request.form['email']
-        token_correo = request.form['token_correo']
+        token_correo = request.form['tokenCorreo']
 
         user_ = User(email=email, )
 

@@ -18,7 +18,7 @@ const expresiones = { //objeto con varias expresiones regulares
 
 
     email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-    tokenCorreo: /^[0-9]{6}$/ 
+    tokenCorreo: /^[0-9]{6}$/
 }
 
 const validar_formulario = (e) => {
@@ -59,7 +59,7 @@ const validar_campo = (expresion, input, campo) => {
     }
 }
 
-$('#formulario').submit(function (event) {
+$(document).on('submit', '#formulario', function (event) {
     console.log("Entra en el primer formulario")
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
     if (!(campos.email)) {
@@ -81,7 +81,7 @@ $('#formulario').submit(function (event) {
                 div.id = 'grupo__tokenCorreo'
                 div.innerHTML = `
                     <div class="input-group mb-3">
-                        <input id="tokenCorreo" name="tokenCorreo" type="text" class="form-control" placeholder="Codigo">
+                        <input maxlenght="6" id="tokenCorreo" name="tokenCorreo" type="text" class="form-control" placeholder="Codigo">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-key"></span>
@@ -101,19 +101,23 @@ $('#formulario').submit(function (event) {
 
                 formulario.id = "formulario2"
 
-                boton_submit.setAttribute('form', 'formulario2') 
+                //boton_submit.setAttribute('form', 'formulario2') 
 
-                $('#boton_submit').attr('form', 'formulario2');
+                //$('#boton_submit').attr('form', 'formulario2');
 
                 boton_submit.textContent = "Enviar codigo"
-                
+
+                //creando un nodeList con todos los inputs denfro de el id formulario2
                 const inputs = document.querySelectorAll("#formulario2 input")
 
                 inputs.forEach((input) => {
                     input.addEventListener('keyup', validar_formulario);
                     input.addEventListener('blur', validar_formulario);
-                
+
                 });
+
+                //Agregando evento submit a formulario2
+                addEvent_formulario2()
 
                 Swal.fire({
                     toast: true,
@@ -168,66 +172,67 @@ $('#formulario').submit(function (event) {
     }
 });
 
+function addEvent_formulario2() {
 
-$('#formulario2').submit(function (event) {
-    console.log("entra en el segundo formulario")
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
-    if (!(campos.email && campos.tokenCorreo)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Lo siento ',
-            text: 'Registra el formulario correctamente ',
-            position: 'center'
-        })
-    } else {
-        let url = document.getElementById('url_forgot').value
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: $(this).serialize(),// Obtiene los datos del formulario
-            success: function (response) {
+    $(document).on('submit', '#formulario2', function (event) {
+        console.log("entra en el segundo formulario")
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        if (!(campos.email && campos.tokenCorreo)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo siento ',
+                text: 'Registra el formulario correctamente ',
+                position: 'center'
+            })
+        } else {
+            let url = document.getElementById('url_forgot').value
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $(this).serialize(),// Obtiene los datos del formulario
+                success: function (response) {
 
-                console.log(response)
+                    console.log(response)
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Se ha restaurado tu contraseña correctamente, revisa tu correo'
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                     window.location.replace(url);
-                    } 
-                  })
-
-    
-                
-                setTimeout(function() {
-                    window.location.replace(url);
-                  },4000);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Se ha restaurado tu contraseña correctamente, revisa tu correo'
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            window.location.replace(url);
+                        }
+                    })
 
 
 
-            },
-            error: function (xhr, status, error) {
-                // Código a ejecutar si se produjo un error al realizar la solicitud
-
-
-                Swal.fire({
-                    icon: 'error',
-                    title: xhr.responseJSON.ErrorType,
-                    text: xhr.responseJSON.Message
-                })
+                    setTimeout(function () {
+                        window.location.replace(url);
+                    }, 4000);
 
 
 
-            }
-        });
-    }
-});
+                },
+                error: function (xhr, status, error) {
+                    // Código a ejecutar si se produjo un error al realizar la solicitud
+
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: xhr.responseJSON.ErrorType,
+                        text: xhr.responseJSON.Message
+                    })
 
 
 
+                }
+            });
+        }
+    });
 
+
+
+}
 
 //recorriendo foreach de inputs por ada inputs se le agrega un evento y se llama la funcion validar formulario
 inputs.forEach((input) => {
