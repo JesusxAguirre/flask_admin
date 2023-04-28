@@ -118,41 +118,37 @@ $(document).on('submit', '#formulario', function (event) {
 
                 //Agregando evento submit a formulario2
                 addEvent_formulario2()
-
-                Swal.fire({
-                    toast: true,
-                    title: 'Se ha enviado un codigo a tu correo por favor colocalo en el campo del formulario para resetear tu password',
-                    position: 'top-end',
-                    html: 'El tiempo se acabara en <b></b> .',
-                    showConfirmButton: false,
-                    timerProgressBar: true,
-                    timer: 300000, // Tiempo en milisegundos (5 minutos = 300000 milisegundos)
-                    didOpen: () => {
+                Swal.queue([
+                    {
+                      toast: true,
+                      title: 'Se ha enviado un codigo a tu correo por favor colocalo en el campo del formulario para resetear tu password',
+                      position: 'top-end',
+                      html: 'El tiempo se acabara en <b></b> .',
+                      showConfirmButton: false,
+                      timerProgressBar: true,
+                      timer: 300000, // Tiempo en milisegundos (5 minutos = 300000 milisegundos)
+                      didOpen: () => {
                         Swal.showLoading();
                         const b = Swal.getHtmlContainer().querySelector('b');
                         let contador = 300;
                         const intervalo = setInterval(() => {
-                            contador--;
-                            // Formatear el tiempo restante en minutos y segundos
-                            const minutos = Math.floor(contador / 60);
-                            const segundos = contador % 60;
-                            b.textContent = `${minutos}:${segundos.toString().padStart(2, '0')}`;
-                            if (contador === 0) {
-                                clearInterval(intervalo);
-                                Swal.close();
-                            }
+                          contador--;
+                          // Formatear el tiempo restante en minutos y segundos
+                          const minutos = Math.floor(contador / 60);
+                          const segundos = contador % 60;
+                          b.textContent = `${minutos}:${segundos.toString().padStart(2, '0')}`;
+                          if (contador === 0) {
+                            clearInterval(intervalo);
+                            Swal.close();
+                          }
                         }, 1000);
-                    },
-                    willClose: () => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: "Request Time Out",
-                            text: "Expiro el token"
-                                               })
-        
+                      },
+                      willClose: () => {
+                        // Código que se ejecuta cuando el temporizador llega a cero
+                      }
                     }
-                });
-
+                  ]);
+                  
 
 
 
@@ -162,14 +158,14 @@ $(document).on('submit', '#formulario', function (event) {
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud
-
-
-                Swal.fire({
-                    icon: 'error',
-                    title: xhr.responseJSON.ErrorType,
-                    text: xhr.responseJSON.Message
-                })
-
+                Swal.queue([
+                    {
+                      icon: 'error',
+                      title: xhr.responseJSON.ErrorType,
+                      text: xhr.responseJSON.Message,
+                      allowOutsideClick: false
+                    }
+                  ]);
 
 
             }
@@ -183,12 +179,14 @@ function addEvent_formulario2() {
         console.log("entra en el segundo formulario")
         event.preventDefault(); // Evita que el formulario se envíe automáticamente
         if (!(campos.email && campos.tokenCorreo)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Lo siento ',
-                text: 'Registra el formulario correctamente ',
-                position: 'center'
-            })
+            Swal.queue([
+                {
+                  icon: 'error',
+                  title: "Lo siento",
+                  text: "Completa el formulario correctamente",
+                  allowOutsideClick: false
+                }
+              ]);
         } else {
             let url = document.getElementById('url_forgot').value
             $.ajax({

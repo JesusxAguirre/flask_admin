@@ -20,6 +20,11 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
         href="{{url_for('static', filename='adminlte/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+
+    <!--SWEETALER2 CSS-->
+
+    <link rel="stylesheet" href="{{url_for('static', filename='node_modules/sweetalet2/dist/sweetalert2.min.css')}}">
+
     {% block head %}
 
     {% endblock %}
@@ -301,8 +306,8 @@
         <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
         <!-- AdminLTE App -->
         <script src="{{url_for('static', filename='adminlte/dist/js/adminlte.min.js')}}"></script>
-        <!-- SWEET ALERT -->
-        <script src="{{url_for('static', filename='js/sweetalert2.js')}}"></script>
+        <!-- SWEET ALERT 2-->
+        <script src="{{url_for('static', filename='node_modules/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
 
         {% block links_js %}
 

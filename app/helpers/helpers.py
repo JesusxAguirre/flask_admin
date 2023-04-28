@@ -121,7 +121,7 @@ def validate_forgot_password(user_ : User)-> None:
 
         raise InvalidadData(f"el token no es un dato numerico algo esta equivocado")
 
-    if user_.code != session['code']:
+    if user_.token_correo != session['code']:
         
         raise InvalidadData(f"El token enviado no es el correcto por favor escribalo correctamente")
 
