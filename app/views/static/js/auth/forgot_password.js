@@ -81,7 +81,7 @@ $(document).on('submit', '#formulario', function (event) {
                 div.id = 'grupo__tokenCorreo'
                 div.innerHTML = `
                     <div class="input-group mb-3">
-                        <input maxlenght="6" id="tokenCorreo" name="tokenCorreo" type="text" class="form-control" placeholder="Codigo">
+                        <input maxlength="6" id="tokenCorreo" name="tokenCorreo" type="text" class="form-control" placeholder="Codigo">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-key"></span>
@@ -144,7 +144,12 @@ $(document).on('submit', '#formulario', function (event) {
                         }, 1000);
                     },
                     willClose: () => {
-                        window.location.replace(url);
+                        Swal.fire({
+                            icon: 'error',
+                            title: "Request Time Out",
+                            text: "Expiro el token"
+                                               })
+        
                     }
                 });
 

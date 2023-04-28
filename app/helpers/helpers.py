@@ -3,8 +3,11 @@ from ..models.exceptions import InvalidadData, UserAlreadyExist, UserNotExist, R
 import re
 from datetime import timedelta, datetime
 import pytz
+import time
 from flask import session
 
+# Establecer la zona horaria local
+local_tz = pytz.timezone('America/Caracas')
 
 regex_email = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 
@@ -74,7 +77,8 @@ def validate_user_update(user: User)-> None:
 
 
 def validate_code_created_time() -> None:
-    if 'code_created_at' in session and datetime.now(pytz.utc) > session['code_created_at'] + timedelta(minutes=5):
+
+    if 'code_created_at' in session and datetime.now(local_tz) > session['code_created_at'] + timedelta(minutes=5):
             # La variable de sesión ha expirado
             del session['code']
             del session['code_created_at']
