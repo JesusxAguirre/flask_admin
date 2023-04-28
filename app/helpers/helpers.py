@@ -78,7 +78,10 @@ def validate_user_update(user: User)-> None:
 
 def validate_code_created_time() -> None:
 
-    if 'code_created_at' in session and datetime.now(local_tz) > session['code_created_at'] + timedelta(minutes=5):
+    if not 'code_created_at' in session:
+        raise RequestTimeOut(f"El codigo de recuperacion expiro")
+
+    if datetime.now(local_tz) > session['code_created_at'] + timedelta(minutes=5):
             # La variable de sesión ha expirado
             del session['code']
             del session['code_created_at']
