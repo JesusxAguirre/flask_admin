@@ -42,7 +42,10 @@ def forgot_password(user_: User)-> User:
     user_.email = helpers.sanitizar_caracteres(user_.email)
     user_.token_correo = helpers.sanitizar_caracteres(user_.token_correo)
 
-    helpers.validate_code_created_time()
+    print("ESTE ES E;L VALOR DEL TOKEN DE CORREO VERIFICARE QUE SEA UN STRING")
+    print(user_.token_correo)
+
+    helpers.validate_expirated_code()
 
     helpers.validate_forgot_password(user_)
 

@@ -76,7 +76,15 @@ def validate_user_update(user: User)-> None:
         raise InvalidadData(F"Estas enviando un rol que no existe en la BD")
 
 
-def validate_code_created_time() -> None:
+
+
+def validate_expirated_code() -> None:
+    """funcion que valida si el codigo ya expiro
+
+    Raises:
+        RequestTimeOut: excepcion para darle una respuesta a l usuario cuando envia el formulario
+        RequestTimeOut: excepcion para darle una respuesta a l usuario cuando envia el formulario
+    """
 
     if not 'code_created_at' in session:
         raise RequestTimeOut(f"El codigo de recuperacion expiro")
@@ -93,15 +101,25 @@ def validate_code_created_time() -> None:
 
 #VALIDAR QUE LOS DATOS ENVIADOS PARA RESETEAR LA CONTRASEÑA SEAN VALIDOS            
 def validate_forgot_password(user_ : User)-> None:
+    """Validacion de los campos del envio de validacion de contraseña
+    es decir se valida que no se hayan enviado datos invalidos.
 
+    Args:
+        user_ (User): objeto de tipo usuario
+
+    Raises:
+        InvalidadData: _description_
+        InvalidadData: _description_
+        InvalidadData: _description_
+    """
 
     if not security_validation_email(user_.email):
 
         raise InvalidadData(f"El email : {user.email} es invalido")
 
-    if not security_validation_strings(user_.token_correo):
+    if not user_.token_correo.isdigit():
 
-        raise InvalidadData(f"el token no es un string")
+        raise InvalidadData(f"el token no es un dato numerico algo esta equivocado")
 
     if user_.code != session['code']:
         
