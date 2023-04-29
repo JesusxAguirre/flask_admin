@@ -2,45 +2,12 @@
 const formulario = document.getElementById("formulario")
 const inputs = document.querySelectorAll("#formulario input")
 const boton_submit = document.getElementById("boton_submit")
+const countdownToast = new bootstrap.Toast(document.getElementById("countdown-toast"));
 
 // Define la duración del countdown en segundos
-var duration = 300;
+const duration = 300;
 
-// Agrega un listener al botón para mostrar el toast
- function countdown_toast() {
-  // Muestra el toast
-  var countdownToast = new bootstrap.Toast(document.getElementById("countdown-toast"));
-  countdownToast.show();
-  
-  // Establece la fecha límite para el countdown
-  var countDownDate = new Date(new Date().getTime() + duration * 1000).getTime();
 
-  // Actualiza el countdown cada segundo
-  var x = setInterval(function() {
-
-    // Obtiene la fecha y hora actual
-    var now = new Date().getTime();
-
-    // Calcula la distancia entre la fecha límite y la fecha actual
-    var distance = countDownDate - now;
-
-    // Calcula los minutos y segundos restantes
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Muestra el countdown en el elemento con ID "countdown"
-    document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
-
-    // Si la fecha límite ha pasado, muestra un mensaje de finalizado y cierra el toast
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown").innerHTML = "FINALIZADO";
-      setTimeout(function() {
-        countdownToast.hide();
-      }, 2000);
-    }
-  }, 1000);
-}
 
 const campos = {
 
@@ -233,7 +200,7 @@ function addEvent_formulario2() {
                         text: xhr.responseJSON.Message
                     })
 
-
+                    
 
                 }
             });
@@ -251,3 +218,39 @@ inputs.forEach((input) => {
 
 });
 
+
+// CREANDO FUNCION DEL TOAST
+function countdown_toast() {
+    // Muestra el toast
+    
+    countdownToast.show();
+    
+    // Establece la fecha límite para el countdown
+    var countDownDate = new Date(new Date().getTime() + duration * 1000).getTime();
+  
+    // Actualiza el countdown cada segundo
+    var x = setInterval(function() {
+  
+      // Obtiene la fecha y hora actual
+      var now = new Date().getTime();
+  
+      // Calcula la distancia entre la fecha límite y la fecha actual
+      var distance = countDownDate - now;
+  
+      // Calcula los minutos y segundos restantes
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+      // Muestra el countdown en el elemento con ID "countdown"
+      document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+  
+      // Si la fecha límite ha pasado, muestra un mensaje de finalizado y cierra el toast
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "CODIGO EXPIRADO";
+        setTimeout(function() {
+          countdownToast.hide();
+        }, 2000);
+      }
+    }, 1000);
+  }

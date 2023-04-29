@@ -102,7 +102,9 @@ def recuperar_password_post():
 
         response=user_controller.forgot_password(user_)
         
-        return response,200
+        print(response.to_dict())
+
+        return {"msj":"Nueva clave enviada al correo", "status_code":200, "usuario":  response.to_dict()},200
 
     email = request.form['email']
 

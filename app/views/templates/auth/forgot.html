@@ -17,22 +17,21 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.css')}}">
 
-     <!--SWEETALER2 CSS-->
+    <!--SWEETALER2 CSS-->
 
-<style>
-    #countdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        font-weight: bold;
-      }
-      
-      .toast-body {
-        text-align: center;
-      }
-      
-</style>
+    <style>
+        #countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .toast-body {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body class="hold-transition register-page">
@@ -48,24 +47,25 @@
                     recuperarla con un mensaje a tu correo</p>
 
                 <form id="formulario" method="post" novalidate>
-                    
-                        <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                        <div id="grupo__email">
-                            <div class="input-group mb-3">
-                                <input id="email" name="email" type="email" class="form-control" placeholder="Email">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-envelope"></span>
-                                    </div>
+
+                    <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <div id="grupo__email">
+                        <div class="input-group mb-3">
+                            <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
                                 </div>
                             </div>
-                            <p id="mensaje_email" class="text-danger d-none">Escriba un email valido</p>
                         </div>
-                    
-                    <div  class="row  ">
+                        <p id="mensaje_email" class="text-danger d-none">Escriba un email valido</p>
+                    </div>
+
+                    <div class="row  ">
 
                         <div class="col-4 ">
-                            <button id="boton_submit" type="submit" class="btn btn-primary btn-block">Enviar email</button>
+                            <button id="boton_submit" type="submit" class="btn btn-primary btn-block">Enviar
+                                email</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -83,41 +83,43 @@
         <!-- /.card -->
     </div>
     <!-- /.login-box -->
- 
-          
-      
-      <div class="fixed-top top-2 end-0 mt-3 p-3">
-        <div id="countdown-toast" class="toast hide "  role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="me-auto">Countdown Toast</strong>
-            
-          </div>
-          <div class="toast-body">
-            <p>Este es un ejemplo de countdown dentro de un toast de Bootstrap 5.</p>
-            <div id="countdown"></div>
-          </div>
+
+
+
+    <div class="fixed-top top-2 end-0 mt-3 p-3">
+        <div id="countdown-toast" class="toast hide " role="alert" data-bs-delay="300000" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Countdown Toast</strong>
+
+            </div>
+            <div class="toast-body">
+                <p>El codigo enviado al correo expirara en.</p>
+                <div id="countdown"></div>
+            </div>
         </div>
-      </div>
-      
-    
+    </div>
+
+
     <input hidden id="url_forgot" value="{{ url_for('auth.recuperar_password_post') }}" />
 
 
 
     <!-- jQuery -->
     <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
-    
-    
+
+
     <!-- AdminLTE App -->
     <script src="{{url_for('static', filename='adminlte/dist/js/adminlte.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/auth/forgot_password.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='node_modules/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
-        
-    
     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    
+
     <script src="{{url_for('static', filename='js/bootstrap.bundle.js')}}"></script>
+    <script src="{{url_for('static', filename='node_modules/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/auth/forgot_password.js')}}"></script>
+
+
+
+
 </body>
 
 </html>
