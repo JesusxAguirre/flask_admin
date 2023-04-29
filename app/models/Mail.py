@@ -34,7 +34,7 @@ def send_code_password(user_: User) -> None:
 def send_message_restore(codigo) -> None:
 
 
-    msg = msg = Message(subject="Password Recovery Code", recipients=[session['email_en_recuperacion']])
+    msg = msg = Message(subject="Contraseña Recuperada", recipients=[session['email_en_recuperacion']])
     msg.body = f"Tu password fue reseteada con este codigo. {codigo}"
 
     mail.send(msg)
