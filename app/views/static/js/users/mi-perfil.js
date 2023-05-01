@@ -97,8 +97,9 @@ inputs.forEach((input) => {
 
 
 
-$('#formulario').submit(function (event) {
+$(document).on('submit', '#formulario', function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    console.log("entra en el submit")
     if (!(campos.name && campos.apellido && campos.email && campos.password && campos.direccion && campos.fechaNacimiento && campos.telefono)) {
         Swal.fire({
             icon: 'error',
