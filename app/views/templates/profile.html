@@ -49,6 +49,7 @@
                                 <div class="card-body">
                                     <!-- Form START -->
                                     <form class="row g-3" novalidate id="formulario">
+                                        <input id="token" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                                         <!-- Profile photo -->
                                         <div class="col-12">
                                             <label class="form-label">Actualizar tu foto de perfil</label>
@@ -71,12 +72,12 @@
                                         </div>
 
                                         <!-- Nombre -->
-                                        <div class="col-md-6" id="grupo__nombre">
+                                        <div class="col-md-6" id="grupo__name">
 
                                             <label class=" form-label">Nombre </label>
                                             <div class="input-group mb-3"">
-                                                <input maxlength=" 12" type=" text"
-                                                class="form-control text-capitalize" value="{{current_user.name}} "
+                                                <input maxlength=" 12" type=" text" name="name" id="name"
+                                                class="form-control text-capitalize" value="{{current_user.name}}"
                                                 placeholder="Enter your full name">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -84,13 +85,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="text-danger d-none">Este campo debe contener minimo 3 letras maximo 12 sin espacios en
+                                                blanco</p>
                                         </div>
                                         <!-- Apellido -->
                                         <div class="col-md-6" id="grupo__apellido">
 
                                             <label class=" form-label">Apellido </label>
                                             <div class=" input-group mb-3">
-                                                <input maxlength="12" type="text" class="form-control text-capitalize"
+                                                <input name="apellido" id="apellido" maxlength="12" type="text"
+                                                    class="form-control text-capitalize"
                                                     value="{{current_user.apellido}}"
                                                     placeholder="Enter your full name">
                                                 <div class="input-group-append">
@@ -99,14 +103,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="text-danger d-none">Este campo debe contener minimo 3 letras maximo 12 sin espacios en
+                                                blanco</p>
                                         </div>
 
                                         <!-- Email -->
                                         <div id="grupo__email" class="col-md-6">
                                             <label class="form-label">Email </label>
                                             <div class=" input-group mb-3">
-                                                <input type="email" class="form-control" value="{{current_user.email}}"
-                                                    placeholder="Enter your email id">
+                                                <input name="email" id="email" type="email" class="form-control"
+                                                    value="{{current_user.email}}" placeholder="Enter your email id">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-envelope"></span>
@@ -120,8 +126,8 @@
                                         <div id="grupo__telefono" class="col-md-6">
                                             <label class="form-label">Telefono</label>
                                             <div class=" input-group mb-3">
-                                                <input maxlength="13" type="text" class="form-control"
-                                                    value="{{current_user.telefono}}"
+                                                <input name="telefono" id="telefono" maxlength="13" type="text"
+                                                    class="form-control" value="{{current_user.telefono}}"
                                                     placeholder="Enter your mobile number">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -129,6 +135,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="text-danger d-none">Este campo debe contener 10 digitos</p>
                                         </div>
 
 
@@ -137,20 +144,22 @@
                                         <div id="grupo_fechaNacimiento" class="col-md-6">
                                             <label class="form-label">Fecha de nacimiento</label>
                                             <div class=" input-group mb-3">
-                                                <input type="date" class="form-control flatpickr flatpickr-input"
-                                                    value="{{current_user.fecha_nacimiento}}" placeholder="Enter date of birth"
-                                                    data-date-format="d M Y">
+                                                <input name="fechaNacimiento" id="fechaNacimiento" type="date"
+                                                    class="form-control flatpickr flatpickr-input"
+                                                    value="{{current_user.fecha_nacimiento}}"
+                                                    placeholder="Enter date of birth" data-date-format="d M Y">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-calendar"></span>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="text-danger d-none">Este campo no puede estar vacio</p>
                                         </div>
                                         <div id="grupo__password" class="col-md-6">
                                             <label class="form-label">Password</label>
                                             <div class=" input-group mb-3">
-                                                <input maxlength="12" type="password"
+                                                <input id="password" name="password" maxlength="12" type="password"
                                                     class="form-control flatpickr flatpickr-input" value=""
                                                     placeholder="Password">
                                                 <div class="input-group-append">
@@ -168,7 +177,7 @@
                                         <div id="grupo__direccion" class="col-12">
                                             <label class="form-label">Direccion</label>
                                             <div class=" input-group mb-3">
-                                                <input maxlength="20" type="text"
+                                                <input id="direccion" name="direccion" maxlength="20" type="text"
                                                     class="form-control flatpickr flatpickr-input"
                                                     value="{{current_user.direccion}}" placeholder="Direccion"
                                                     data-date-format="d M Y">
@@ -178,6 +187,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="text-danger d-none">Este campo debe contener minimo 10 </p>
                                         </div>
 
 
@@ -211,7 +221,7 @@
 
 
 
-
+<input hidden value="{{url_for('users.mi_perfil_get')}}" id="url_perfil">
 {% endblock %}
 
 {% block links_js %}
