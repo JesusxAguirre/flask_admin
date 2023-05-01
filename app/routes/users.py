@@ -107,6 +107,23 @@ def users_update(id_):
 
 @users_scope.route('/mi-perfil', methods=['GET'])
 def mi_perfil_get():
+    """FUNCION QUE TRAE LA VISTA DEL PEFIL
+
+    Returns:
+        HTML: RETORNA EL RENDERIZADO DE JINJA2
+    """
 
 
     return render_template('profile.html')
+    
+
+@users_scope.route('/mi-perfil', methods=['POST'])
+def mi_perfil_post():
+    """RECIBE EL FORMULARIO DE EDITAR EL PERFIL
+
+    Returns:
+        HTML: RETORNA EL RENDERIZADO DE JINJA2
+    """
+
+
+    return {"msj":"HOLA MUNDO"}
