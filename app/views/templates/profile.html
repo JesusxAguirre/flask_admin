@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Mi perfil</h1>
+                </div>
+
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Default box -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Informacion personal</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card border">
+
+
+                                <!-- Card body START -->
+                                <div class="card-body">
+                                    <!-- Form START -->
+                                    <form class="row g-3">
+                                        <!-- Profile photo -->
+                                        <div class="col-12">
+                                            <label class="form-label">Actualizar tu foto de perfil<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <label class="position-relative me-4" for="uploadfile-1"
+                                                    title="Replace this pic">
+                                                    <!-- Avatar place holder -->
+                                                    <span class="avatar avatar-xl">
+                                                        <img id="uploadfile-1-preview"
+                                                            class="avatar-img rounded-circle border border-white border-3 shadow"
+                                                            src="{{url_for('static', filename='img/user1.png')}}" alt="">
+                                                    </span>
+                                                </label>
+                                                <!-- Upload button -->
+                                                <label class="btn btn-sm btn-primary-soft mb-0"
+                                                    for="uploadfile-1">Cambiar</label>
+                                                <input id="uploadfile-1" class="form-control d-none" type="file">
+                                            </div>
+                                        </div>
+
+                                        <!-- Name -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nombre completo<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control text-capitalize" value="{{current_user.name}} {{current_user.apellido}}"
+                                                placeholder="Enter your full name">
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" value="{{current_user.email}}"
+                                                placeholder="Enter your email id">
+                                        </div>
+
+                                        <!-- Mobile -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Telefono<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" value="{{current_user.telefono}}"
+                                                placeholder="Enter your mobile number">
+                                        </div>
+
+                                        
+
+                                        <!-- Date of birth -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Fecha de nacimiento<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="date" class="form-control flatpickr flatpickr-input"
+                                                value="29 Aug 1996" placeholder="Enter date of birth"
+                                                data-date-format="d M Y" >
+                                        </div>
+
+                                       
+                                        <!-- Address -->
+                                        <div class="col-12">
+                                            <label class="form-label">Direccion</label>
+                                            <textarea class="form-control" rows="3"
+                                                spellcheck="false">{{current_user.direccion}}</textarea>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="col-12 text-end mt-4">
+                                            <a href="#" class="btn btn-primary mb-0">Guardar cambios</a>
+                                        </div>
+                                    </form>
+                                    <!-- Form END -->
+                                </div>
+                                <!-- Card body END -->
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            Footer
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+
+{% endblock %}

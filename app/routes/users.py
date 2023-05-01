@@ -103,3 +103,10 @@ def users_update(id_):
 
 
     return user_actualizado.to_dict(),200
+
+
+@users_scope.route('/mi-perfil', methods=['GET'])
+def mi_perfil_get():
+
+
+    return render_template('profile.html')
