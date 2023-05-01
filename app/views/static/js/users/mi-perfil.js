@@ -5,10 +5,10 @@ const inputs = document.querySelectorAll("#formulario input")
 // Obtener el elemento de entrada oculto
 
 const campos = {
-    nombre: false,
+    nombre: true,
     apellido: true,
-    email : true,
-    telefono :true,
+    email: true,
+    telefono: true,
     fechaNacimiento: true,
     password: true,
     direccion: true,
@@ -20,6 +20,7 @@ const expresiones = { //objeto con varias expresiones regulares
     caracteres: /^[A-ZÑa-zñáéíóúÁÉÍÓÚ'°]{3,12}$/, // Letras y espacios, pueden llevar acentos.
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/, // 6 a 12 digitos.
     email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+    telefono: /^04\d{8}$/,
 }
 
 const validar_formulario = (e) => {
@@ -36,16 +37,16 @@ const validar_formulario = (e) => {
         case "email":
             validar_campo(expresiones.email, e.target, 'email');
             break;
-        
+
         case "telefono":
-            validar_campo(expresiones.caracteres, e.target, 'telefono');
+            validar_campo(expresiones.telefono, e.target, 'telefono');
             break;
 
         case "fechaNacimiento":
-            validar_campo(expresiones.caracteres, e.target, 'fechaNacimiento');
+            ValidarFecha_nacimiento(e.target, 'fechaNacimiento');
             break;
 
-    
+
         case "password":
             validar_campo(expresiones.password, e.target, 'password');
             break;
@@ -56,6 +57,29 @@ const validar_formulario = (e) => {
 
     }
 
+}
+
+const ValidarFecha_nacimiento = (input, campo) => {
+    const mayoriaEdad = new Date();
+    mayoriaEdad.setFullYear(mayoriaEdad.getFullYear() - 18);
+
+
+    const maximaEdad = new Date();
+    maximaEdad.setFullYear(maximaEdad.getFullYear() - 99);
+
+    const fechaNacimientoTS = new Date(input.value).getTime();
+
+    if (fechaNacimientoTS < mayoriaEdad.getTime() && fechaNacimientoTS > maximaEdad.getTime()) {
+        document.querySelector(`#grupo__${campo} p`).classList.remove('d-block');
+
+        document.querySelector(`#grupo__${campo} p`).classList.add('d-none');
+        campos[campo] = true;
+    } else {
+        document.querySelector(`#grupo__${campo} p`).classList.remove('d-none');
+
+        document.querySelector(`#grupo__${campo} p`).classList.add('d-block');
+        campos[campo] = false;
+    }
 }
 
 
@@ -99,7 +123,7 @@ inputs.forEach((input) => {
 
 $(document).on('submit', '#formulario', function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
-    console.log("entra en el submit")
+
     if (!(campos.name && campos.apellido && campos.email && campos.password && campos.direccion && campos.fechaNacimiento && campos.telefono)) {
         Swal.fire({
             icon: 'error',
@@ -108,7 +132,7 @@ $(document).on('submit', '#formulario', function (event) {
             position: 'center'
         })
     } else {
-        let url=document.getElementById("url_perfil").value
+        let url = document.getElementById("url_perfil").value
         $.ajax({
             type: 'POST',
             url: url,

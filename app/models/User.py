@@ -68,7 +68,7 @@ class User(db.Model, UserMixin):
         if user.email is not None:
             existing_user.email = user.email
         if user.password is not None:
-            existing_user.password = user.password
+            existing_user.password.set_password(user.password) 
         if user.telefono is not None:
             existing_user.telefono = user.telefono
         if user.direccion is not None:
