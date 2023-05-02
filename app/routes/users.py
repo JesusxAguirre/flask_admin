@@ -145,6 +145,14 @@ def mi_perfil_post(id_):
     apellido=apellido,email = email, telefono=telefono, fecha_nacimiento= fecha_nacimiento,
     password= password, direccion = direccion)
 
+    if 1 == 1:
+
+        print(user_.to_dict())    
+
+        return False
+
     user_ = user_controller.update(user_)
+
+
 
     return {user_.id : user_.to_dict(), "msj": "Se han actualizado tus datos exitosamente", "status_code": 200},200

@@ -146,7 +146,8 @@ $(document).on('submit', '#formulario', function (event) {
                 }
                 Swal.fire({
                     icon: 'success',
-                    title: 'Te has registrado correctamente en el sistema'
+                    title: 'Actualizado correctamente',
+                    text:  response.msj
                 })
             },
             error: function (xhr, status, error) {

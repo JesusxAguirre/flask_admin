@@ -15,8 +15,11 @@ regex_password = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?
 
 regex_strings= r"^[a-zA-Z]{3,12}$"
 
+regex_telefono= r"^04\d{9}$"
+
 regex_numeros= r"^[0-9]{3,12}$"
 
+regex_fecha = r"^\d{2}/\d{2}/\d{4}$"
 
 #VALIDACION DEL OBJETO USUARIO - CREATE
 def validate_users(user: User)->User:
@@ -81,6 +84,36 @@ def validate_user_update(user_: User)-> None:
     if not user_.id.isdigit():
         raise InvalidadData(f"Estas enviando un id que no es de tipo numerico")
 
+    if user_.name is not None:
+        if not security_validation_strings(user_.name):
+            raise InvalidadData(f"el nombre : {user_.name} es invalido")
+        
+    if user_.apellido is not None:
+        if not security_validation_strings(user_.apellido):
+            raise InvalidadData(f"el apellido : {user_.apellido} es invalido")
+
+    if user_.email is not None:
+        if not security_validation_email(user_.email):
+
+            raise InvalidadData(f"El email : {user_.email} es invalido")
+   
+    if user_.telefono is not None:
+        if not security_validation_telefono(user_.telefono):
+
+            raise InvalidadData(f"el telefono : {user_.telefono} es invalido")    
+    
+    if user_.password is not None:
+        if not security_validation_password(user_.password):
+            raise InvalidadData(f"la clave :{user_.password} es invalida")
+
+        user_.set_password(user_.password)
+    
+    if user_.fecha_nacimiento is not None:
+        if not security_validation_fecha(user_.fecha_nacimiento):
+            raise InvalidadData(f"la fecha : {user_.fecha_nacimiento} es invalida")
+    if user_.direccion is not None:
+        if not security_validation_strings(user_.direccion):
+            raise InvalidadData(f"la direccion: {user_.direccion} es invalida")
 
 def validate_expirated_code() -> None:
     """funcion que valida si el codigo ya expiro
@@ -147,9 +180,19 @@ def security_validation_password(password : str)-> bool:
 
     return bool(re.search(regex_password,password))
 
+def security_validation_telefono(telefono : str)-> bool:
+
+    return bool(re.search(regex_telefono, telefono))
+
+def security_validation_fecha(fecha)->bool:
+
+    return bool(re.search(regex_fecha, fecha))    
+
 def sanitizar_caracteres(string):
 
-    return string.lower().strip()
-
+    if string != "None":
+        return string.lower().strip()
+    else:
+        return None
 
 
