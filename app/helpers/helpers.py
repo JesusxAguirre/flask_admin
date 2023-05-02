@@ -105,12 +105,9 @@ def validate_user_update(user_: User)-> None:
     if user_.password is not None:
         if not security_validation_password(user_.password):
             raise InvalidadData(f"la clave :{user_.password} es invalida")
-
-        user_.set_password(user_.password)
     
     if user_.fecha_nacimiento is not None:
-        print(user_.fecha_nacimiento)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  
         if not security_validation_fecha(user_.fecha_nacimiento):
             raise InvalidadData(f"la fecha de nacimiento : {user_.fecha_nacimiento} es invalida")
     
