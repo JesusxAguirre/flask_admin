@@ -19,7 +19,7 @@ regex_telefono= r"^04\d{9}$"
 
 regex_numeros= r"^[0-9]{3,12}$"
 
-regex_fecha = r"^\d{4}/\d{2}/\d{2}$"
+regex_fecha = r"^\d{4}-\d{2}-\d{2}$"
 
 #VALIDACION DEL OBJETO USUARIO - CREATE
 def validate_users(user: User)->User:
