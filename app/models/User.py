@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(256), nullable=False)
     telefono = db.Column(db.String(20))
     direccion = db.Column(db.String(20))
-    fecha_nacimiento = db.Column(db.Date(), default=False)
+    fecha_nacimiento = db.Column(db.Date(), nullable=True, default= None)
     fecha_registro = db.Column(db.Date(), default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
     rol = db.Column(db.String(30), default="Invitado")

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{% block title %} {% endblock %}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url_for('static',filename='adminlte/fontawesome-free/css/all.min.css')}}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{url_for('static', filename='adminlte/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url_for('static', filename='adminlte/dist/css/adminlte.css')}}">
+
+</head>
+
+<body>
+
+    <main class="page-wrapper">
+        <!-- Page content-->
+        <div class="container d-flex flex-column justify-content-center min-vh-100 py-5">
+            <div class="text-center">
+
+                <img class="rounded-circle" src="{{url_for('static', filename='img/chiguirito fumando.jpg')}}" alt="">
+            </div>
+            <div class="text-center pt-4 mt-lg-2">
+                <h1 class="display-5">No tienes acceso a esta pagina</h1>
+                <p class="fs-lg pb-2 pb-md-0 mb-4 mb-md-5">Por favor consulta con el administrador si deseas tener el
+                    acceso a esta pagina.</p><a class="btn btn-lg btn-primary" href="{{url_for('auth.login_get')}}">Volver al login</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- jQuery -->
+    <script src="{{url_for('static', filename='adminlte/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{url_for('static', filename='adminlte/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{url_for('static', filename='adminlte/dist/js/adminlte.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/sweetalert2.js')}}"></script>
+
+
+
+</body>
+
+</html>

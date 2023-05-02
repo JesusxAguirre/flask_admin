@@ -8,6 +8,7 @@ from datetime import timedelta
 auth_scope = Blueprint("auth", __name__)
 login_manager = LoginManager()
 
+login_manager.login_view = "auth.error"
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -125,3 +126,9 @@ def logout():
     logout_user()
 
     return redirect(url_for("auth.login_get"))
+
+
+@auth_scope.route("/error", methods=['GET'])
+def error():
+
+    return render_template("error_unauthorized.html")
