@@ -1,4 +1,4 @@
-from flask import Blueprint, Response
+from flask import Blueprint, Response, render_template
 from ..models.exceptions import UserAlreadyExist,InvalidadData, UserNotExist, RequestTimeOut
 
 
@@ -36,5 +36,8 @@ def handler_invalid_data(error : RequestTimeOut)-> Response:
 
     return response,408
 
+@errors_scope.app_errorhandler(403)
+def handler_invalid_permision(error):
 
+    return render_template("error_unauthorized.html"),403
 

@@ -74,7 +74,7 @@ def register_post():
 
         response = user_controller.create(user)
 
-        return response, 200
+        return response.to_dict(), 200
 
 # RECUPERAR CONTRASEÑA GET
 
