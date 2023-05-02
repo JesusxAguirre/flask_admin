@@ -3,6 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required, L
 from ..models.User import User
 from ..controller import user_controller
 from ..models import Mail
+from datetime import timedelta
 
 auth_scope = Blueprint("auth", __name__)
 login_manager = LoginManager()
@@ -41,7 +42,7 @@ def login_post():
 
         _user = user_controller.login(user)
 
-        login_user(_user, remember, duration=None)
+        login_user(_user, remember, duration=timedelta(days=1))
 
         return {"msj": "has iniciado sesion correctamente", "status_Code": 200, "url": url_for("security.dashboard_get")}, 200
 
