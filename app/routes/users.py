@@ -91,9 +91,6 @@ def users_update(id_):
     user_actualizado =user_controller.update(user)
 
 
-    print(current_user.id)
-    print(id_)
-
     if str(current_user.id) == str(id_) :
         
         return {
@@ -104,6 +101,11 @@ def users_update(id_):
 
     return user_actualizado.to_dict(),200
 
+
+@users_scope.route('/mi-perfil', methods=['GET'])
+def mi_perfil_get_sin_id():
+
+    return redirect(url_for('users.mi_perfil_get', id_ = current_user.id))
 
 @users_scope.route('/mi-perfil/<id_>', methods=['GET'])
 def mi_perfil_get(id_):
@@ -117,8 +119,8 @@ def mi_perfil_get(id_):
     return render_template('profile.html')
 
 
-@users_scope.route('/mi-perfil', methods=['POST'])
-def mi_perfil_post():
+@users_scope.route('/mi-perfil/<id_>', methods=['POST'])
+def mi_perfil_post(id_):
     """RECIBE EL FORMULARIO DE EDITAR EL PERFIL
 
     Returns:
