@@ -46,7 +46,7 @@ def update(user_ : User)-> User:
     user_.apellido = helpers.sanitizar_caracteres(user_.apellido)
     user_.email = helpers.sanitizar_caracteres(user_.email)
     user_.telefono = helpers.sanitizar_caracteres(user_.telefono)
-    user_.password = helpers.sanitizar_caracteres(user_.password)
+    
     user_.fecha_nacimiento = helpers.sanitizar_caracteres(user_.fecha_nacimiento)
     user_.direccion = helpers.sanitizar_caracteres(user_.direccion)
 

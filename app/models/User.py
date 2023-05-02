@@ -145,5 +145,6 @@ class User(db.Model, UserMixin):
             "telefono": self.telefono,
             "direccion": self.direccion,
             "fecha_registro": self.fecha_registro,
+            "fecha_nacimiento": self.fecha_nacimiento,
             "rol": self.rol
         }

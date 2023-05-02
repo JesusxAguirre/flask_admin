@@ -19,7 +19,7 @@ regex_telefono= r"^04\d{9}$"
 
 regex_numeros= r"^[0-9]{3,12}$"
 
-regex_fecha = r"^\d{2}/\d{2}/\d{4}$"
+regex_fecha = r"^\d{4}/\d{2}/\d{2}$"
 
 #VALIDACION DEL OBJETO USUARIO - CREATE
 def validate_users(user: User)->User:
@@ -109,8 +109,11 @@ def validate_user_update(user_: User)-> None:
         user_.set_password(user_.password)
     
     if user_.fecha_nacimiento is not None:
+        print(user_.fecha_nacimiento)
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         if not security_validation_fecha(user_.fecha_nacimiento):
-            raise InvalidadData(f"la fecha : {user_.fecha_nacimiento} es invalida")
+            raise InvalidadData(f"la fecha de nacimiento : {user_.fecha_nacimiento} es invalida")
+    
     if user_.direccion is not None:
         if not security_validation_strings(user_.direccion):
             raise InvalidadData(f"la direccion: {user_.direccion} es invalida")
@@ -189,10 +192,10 @@ def security_validation_fecha(fecha)->bool:
     return bool(re.search(regex_fecha, fecha))    
 
 def sanitizar_caracteres(string):
-
-    if string != "None":
-        return string.lower().strip()
-    else:
+    string =string.lower().strip()
+    
+    if string == "none" or string == "" or string is None:
         return None
-
+    else:
+        return string
 
