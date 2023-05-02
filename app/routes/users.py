@@ -88,7 +88,7 @@ def users_update(id_):
 
     user = User(rol= rol, id = id_)
 
-    user_actualizado =user_controller.update(user)
+    user_actualizado =user_controller.update_rol(user)
 
 
     if str(current_user.id) == str(id_) :
@@ -104,7 +104,11 @@ def users_update(id_):
 
 @users_scope.route('/mi-perfil', methods=['GET'])
 def mi_perfil_get_sin_id():
+    """funcion que retorna la ruta de mi pefil con la id del current_user
 
+    Returns:
+        funcion: redirige a la funcion mi_perfil_get pasandole un id 
+    """
     return redirect(url_for('users.mi_perfil_get', id_ = current_user.id))
 
 @users_scope.route('/mi-perfil/<id_>', methods=['GET'])

@@ -30,11 +30,22 @@ def create(user: User) -> User:
     return user.create(user)
 
 
-def update(user: User)-> User:
+def update_rol(user: User)-> User:
 
-    helpers.validate_user_update(user)
+    user.id = helpers.sanitizar_caracteres(user.id)
+    user.rol = helpers.sanitizar_caracteres(user.rol)
+
+    helpers.validate_user_update_rol(user)
 
     return user.update(user)
+
+def update(user_ : User)-> User:
+
+    user_.id = helpers.sanitizar_caracteres(user_.id)
+    user_.name = helpers.sanitizar_caracteres(user_.name)
+    user_.apellido = helpers.sanitizar_caracteres(user_.apellido)
+
+    return user_.update(user_)
 
 
 def forgot_password(user_: User)-> User:

@@ -67,7 +67,7 @@ def validate_user_id(id_ : str)-> None:
     if not id_.isdigit():
         raise InvalidadData(f"estas enviando un id que no es de tipo numerico")
 
-def validate_user_update(user: User)-> None:
+def validate_user_update_rol(user: User)-> None:
 
     if not user.id.isdigit():
         raise InvalidadData(f"Estas envindo un id que no es de tipo numerico")
@@ -76,6 +76,10 @@ def validate_user_update(user: User)-> None:
         raise InvalidadData(F"Estas enviando un rol que no existe en la BD")
 
 
+def validate_user_update(user_: User)-> None:
+
+    if not user_.id.isdigit():
+        raise InvalidadData(f"Estas enviando un id que no es de tipo numerico")
 
 
 def validate_expirated_code() -> None:
