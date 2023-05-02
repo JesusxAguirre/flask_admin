@@ -47,7 +47,9 @@ def validate_users(user: User)->User:
 def validate_login(user : User, password : str) -> None:
 
      if user is None or user.check_password(password) is False:
-         raise InvalidadData(f"algo esta equivocado en la clave o el usuario")
+        print(user.password)
+        print(password)
+        raise InvalidadData(f"algo esta equivocado en la clave o el usuario")
      
     
 
