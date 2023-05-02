@@ -123,8 +123,9 @@ inputs.forEach((input) => {
 
 $(document).on('submit', '#formulario', function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
-    if (!(campos.name && campos.apellido && campos.email && campos.password && campos.direccion && campos.fechaNacimiento && campos.telefono)) {
+    
+    
+    if (!(campos.nombre && campos.apellido && campos.email && campos.password && campos.direccion && campos.fechaNacimiento && campos.telefono)) {
         Swal.fire({
             icon: 'error',
             title: 'Lo siento ',
@@ -132,10 +133,11 @@ $(document).on('submit', '#formulario', function (event) {
             position: 'center'
         })
     } else {
-        let url = document.getElementById("url_perfil").value
+        
+        
         $.ajax({
             type: 'POST',
-            url: url,
+            url: window.location.pathname,
             data: $(this).serialize(),// Obtiene los datos del formulario
             success: function (response) {
                 document.getElementById("formulario").reset()

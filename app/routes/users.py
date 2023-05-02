@@ -105,8 +105,8 @@ def users_update(id_):
     return user_actualizado.to_dict(),200
 
 
-@users_scope.route('/mi-perfil', methods=['GET'])
-def mi_perfil_get():
+@users_scope.route('/mi-perfil/<id_>', methods=['GET'])
+def mi_perfil_get(id_):
     """FUNCION QUE TRAE LA VISTA DEL PEFIL
 
     Returns:
@@ -115,15 +115,30 @@ def mi_perfil_get():
 
 
     return render_template('profile.html')
-    
+
 
 @users_scope.route('/mi-perfil', methods=['POST'])
 def mi_perfil_post():
     """RECIBE EL FORMULARIO DE EDITAR EL PERFIL
 
     Returns:
-        HTML: RETORNA EL RENDERIZADO DE JINJA2
-    """
+        JSON: objeto json con datos de usuario actualizado
+    """ 
 
+    #recibiendo dato del POST
+    
+    nombre = request.form['name']
+    apellido = request.form['apellido']
+    email = request.form['email']
+    telefono = request.form['telefono']
+    fecha_nacimiento = request.form['fechaNacimiento']
+    password = request.form['password']
+    direccion = request.form['direccion']
+    
+    user_ = User(id=id_ ,name=nombre,
+    apellido=apellido,email = email, telefono=telefono, fecha_nacimiento= fecha_nacimiento,
+    password= password, direccion = direccion)
 
-    return {"msj":"HOLA MUNDO"}
+    user_ = user_controller.update(user_)
+
+    return {user_.id : user_.to_dict(), "msj": "Se han actualizado tus datos exitosamente", "status_code": 200},200

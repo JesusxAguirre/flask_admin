@@ -159,6 +159,7 @@
                                             <p class="text-danger d-none">Este campo no puede estar vacio. debes ser
                                                 mayor de edad</p>
                                         </div>
+
                                         <div id="grupo__password" class="col-md-6">
                                             <label class="form-label">Password</label>
                                             <div class=" input-group mb-3">
@@ -177,6 +178,7 @@
                                                 mayuscula, una minuscula, un numero y un caracter especial [!@#$%^&*]
                                             </p>
                                         </div>
+                                        
                                         <div id="grupo__direccion" class="col-12">
                                             <label class="form-label">Direccion</label>
                                             <div class=" input-group mb-3">
@@ -200,6 +202,7 @@
                                         <div class="col-12 text-end mt-4">
                                             <button type="submit" class="btn btn-primary mb-0">Guardar cambios </button>
                                         </div>
+                                        <input hidden name="id" id="id" value="{{current_user.id}}">
                                     </form>
                                     <!-- Form END -->
                                 </div>
@@ -224,7 +227,8 @@
 
 
 
-<input hidden value="{{url_for('users.mi_perfil_get')}}" id="url_perfil">
+
+
 {% endblock %}
 
 {% block links_js %}
