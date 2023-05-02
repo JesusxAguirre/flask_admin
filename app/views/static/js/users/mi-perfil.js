@@ -148,7 +148,16 @@ $(document).on('submit', '#formulario', function (event) {
                     icon: 'success',
                     title: 'Actualizado correctamente',
                     text:  response.msj
-                })
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                     window.location.replace(window.location.pathname);
+                    } 
+                  })
+
+                  setTimeout(function() {
+                    window.location.replace(window.location.pathname);
+                  },4000);
             },
             error: function (xhr, status, error) {
                 // Código a ejecutar si se produjo un error al realizar la solicitud

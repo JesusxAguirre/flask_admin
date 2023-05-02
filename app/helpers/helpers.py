@@ -102,7 +102,7 @@ def validate_user_update(user_: User)-> None:
 
             raise InvalidadData(f"el telefono : {user_.telefono} es invalido")    
     
-    if user_.password is not None:
+    if user_.password is not None and user_.password is not "":
         if not security_validation_password(user_.password):
             raise InvalidadData(f"la clave :{user_.password} es invalida")
     

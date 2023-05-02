@@ -61,6 +61,8 @@ class User(db.Model, UserMixin):
                 f"El usuario {user.id} no existe en la base de datos")
 
         # Actualizar los atributos del usuario existente con los valores del objeto user, solo si son diferentes de None
+        
+
         if user.name is not None:
             existing_user.name = user.name
         if user.apellido is not None:
@@ -68,7 +70,7 @@ class User(db.Model, UserMixin):
         if user.email is not None:
             existing_user.email = user.email
         if user.password is not None:
-            existing_user.password.set_password(user.password) 
+            existing_user.set_password(user.password) 
         if user.telefono is not None:
             existing_user.telefono = user.telefono
         if user.direccion is not None:
@@ -81,6 +83,8 @@ class User(db.Model, UserMixin):
             existing_user.is_admin = user.is_admin
         if user.rol is not None:
             existing_user.rol = user.rol
+
+       
 
         db.session.commit()  # Realizar el commit para guardar los cambios en la base de datos
 
